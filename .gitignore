@@ -1,0 +1,81 @@
+# ---------------------------------------------------------------------------
+# Principle 9 — seeds, configs and code are committed. Weights and data never are.
+# The repo holds what *reproduces* a model, never the model. A 400MB checkpoint in
+# git history is unremovable and makes the repo unclonable.
+# `./m done N` refuses to commit if any of these are staged.
+# ---------------------------------------------------------------------------
+
+# Model weights, in every format anyone has invented
+*.safetensors
+*.gguf
+*.ggml
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.msgpack
+
+# Datasets and tokenized corpora
+data/
+datasets/
+*.arrow
+*.parquet
+*.npy
+*.npz
+*.jsonl.gz
+*.bin.idx
+
+# Training outputs
+checkpoints/
+runs/
+outputs/
+wandb/
+lightning_logs/
+*.log
+
+# ---------------------------------------------------------------------------
+# Secrets (Principle 9 / OPS-02)
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.python-version.local
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+
+# ---------------------------------------------------------------------------
+# Notebooks: committed, but stripped of output first (plan §3).
+# Outputs bloat diffs and can leak data samples; `nbstripout` is set up on Day 1.
+# ---------------------------------------------------------------------------
+notebooks/**/*_out.ipynb
+
+# ---------------------------------------------------------------------------
+# OS / editor
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

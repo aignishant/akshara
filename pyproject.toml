@@ -1,0 +1,67 @@
+[project]
+name = "akshara"
+version = "0.1.0"
+description = "Generative AI from the byte up — a language model built, trained, aligned and served from scratch"
+readme = "README.md"
+requires-python = "==3.12.*"
+
+# Principle 6: never invent a version. Every dependency arrives on the day it is first used,
+# after the hand-rolled version exists (Principle 3), pinned with `==` to the version actually
+# observed that day, with a dated row in docs/PACKAGES.md.
+#
+# This list starts empty on purpose. Day 2 adds numpy. Torch arrives when the point becomes
+# scale, not before.
+dependencies = []
+
+[dependency-groups]
+dev = [
+    # Pinned on Day 0. Versions here must match docs/PACKAGES.md.
+    # TODO(day 0): resolve live with
+    #   uv pip compile --no-header - <<< $'ruff\npytest' 2>/dev/null
+    # and replace these placeholders with the exact observed versions.
+]
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["notebooks", "days"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "I",    # import sorting
+    "UP",   # pyupgrade
+    "B",    # bugbear
+    "SIM",  # simplify
+    "PTH",  # use pathlib
+    "RUF",
+]
+ignore = [
+    "E501",    # line length is handled by the formatter
+    "B008",    # function call in default arg — common and readable in config dataclasses
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Teaching code in a lab is written for reading, not for lint compliance.
+"days/**/lab/*.py" = ["ALL"]
+# trace.py parses the master plan, which legitimately contains en-dashes in its day ranges
+# ("Days 1–8") and em-dashes in its prose. The ambiguous-character rules would have us "fix"
+# the very characters the parser has to match — and a heuristic that treated en-dashes as
+# suspicious is exactly the bug that silently dropped three days from the day map once already.
+"scripts/trace.py" = ["RUF001", "RUF003"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    # The default gate runs `-m 'not gpu'`. Tests must pass on a laptop with no CUDA and no
+    # network (CLAUDE.md). Anything needing hardware or a download is marked and excluded.
+    "gpu: requires a CUDA device — excluded from `./m check`",
+    "slow: takes long enough that it does not belong in the default gate",
+    "download: needs the network — excluded from `./m check`",
+]
+filterwarnings = ["error::RuntimeWarning"]
