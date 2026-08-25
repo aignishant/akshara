@@ -150,7 +150,7 @@ estimate.
 ```
 akshara/        the model package — you write every line, from the day documents
 configs/        every run's config, committed. Weights are not.
-days/           the teaching: one folder per day, hub + parts/ (+ lab/papers/ demos)
+days/           the teaching: one folder per day, hub + parts/ (+ papers/ demos)
 docs/           the plan, the six ledgers, the generated ledgers, the ADRs
 scripts/        depth_check.py · trace.py · tracker.py
 tests/          CPU-only, deterministic, offline

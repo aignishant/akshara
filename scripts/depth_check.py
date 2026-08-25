@@ -62,8 +62,12 @@ LEVELS = frozenset({"foundation", "working", "production"})
 #: budget, latency figures, tokens/s. Those are data (Principle 8), not a clock telling the
 #: reader how fast to go. The ban is on estimates aimed at the reader's schedule.
 CLOCK_PATTERNS: tuple[tuple[str, str], ...] = (
-    (r"estimated[ _-]?(hours|time|duration)", "an estimated-time field"),
-    (r"time[ _-]estimate", "a time estimate"),
+    # An estimate has a value. Requiring a colon, an equals or a digit distinguishes a real
+    # field ("estimated_hours: 2") from prose that discusses the ban ("an estimated-time field
+    # authorises the trim"). Without this narrowing, §25 could not describe its own rule.
+    (r"estimated[ _-]?(hours|time|duration)\s*[:=]", "an estimated-time field"),
+    (r"estimated[ _-]?(hours|time|duration)\s+(of\s+)?~?\d", "an estimated-time value"),
+    (r"time[ _-]estimate\s*[:=]", "a time-estimate field"),
     (r"^\s*(duration|time_required|est_hours|hours)\s*:", "a duration field in frontmatter"),
     (
         r"(should|will|might|may|can)\s+take\s+(you\s+)?(about\s+|around\s+|~\s*)?\d",
@@ -97,13 +101,16 @@ EXEMPT_LANGS = frozenset(
 TENSOR_SIGNALS = re.compile(
     r"""(
       \#\s*\(\s*B\s*,          # a shape comment like  # (B, T, C)
-    | \.shape\b
-    | \.view\(
-    | \.reshape\(
-    | \.permute\(
-    | \.transpose\(
-    | \.unsqueeze\(
-    | \.squeeze\(
+    # (?<!\\) — a backslash before the dot means this is regex *source* being quoted
+    # (r"\.shape\b"), not an attribute access. Narrowed after a real false positive on the
+    # very part that documents these patterns. See part 5.2 on owning your false positives.
+    | (?<!\\)\.shape\b
+    | (?<!\\)\.view\(
+    | (?<!\\)\.reshape\(
+    | (?<!\\)\.permute\(
+    | (?<!\\)\.transpose\(
+    | (?<!\\)\.unsqueeze\(
+    | (?<!\\)\.squeeze\(
     | torch\.(zeros|ones|randn|arange|cat|stack|einsum|matmul|tril|triu)\(
     | np\.(zeros|ones|random\.randn|arange|concatenate|stack|einsum|matmul)\(
     | @\s*(w|W|k|q|v|K|Q|V)\b   # an explicit matmul against a weight/projection
@@ -186,12 +193,30 @@ def h2_headings(body: str) -> list[str]:
     return [m.group(1).strip() for m in re.finditer(r"^##\s+(.+?)\s*$", body, re.MULTILINE)]
 
 
+def blank_quoted(text: str) -> str:
+    """Blank out fenced blocks and inline code, preserving line numbers.
+
+    Clock rules (Principle 17) are about prose aimed at the reader. A part that *teaches* the
+    rule must be able to quote it — the checker's own patterns, a console transcript of it
+    firing — and a document forced to mangle its examples to satisfy the checker would be a
+    document optimised for the linter, which is the failure part 5.2 warns about. Newlines are
+    preserved so failure messages still point at the right line.
+    """
+
+    def _blank(m: re.Match[str]) -> str:
+        return "\n" * m.group(0).count("\n")
+
+    text = re.sub(r"^```.*?^```", _blank, text, flags=re.MULTILINE | re.DOTALL)
+    return re.sub(r"`[^`\n]*`", "", text)
+
+
 def check_clocks(path: Path, text: str, rep: Report) -> None:
     """Principle 17 — no reader-directed time estimate anywhere in a day folder."""
+    prose = blank_quoted(text)
     for pattern, description in CLOCK_PATTERNS:
-        m = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
+        m = re.search(pattern, prose, re.IGNORECASE | re.MULTILINE)
         if m:
-            line = text[: m.start()].count("\n") + 1
+            line = prose[: m.start()].count("\n") + 1
             rep.fail(path, f"line {line}: {description} — {m.group(0)!r} (Principle 17)")
 
 

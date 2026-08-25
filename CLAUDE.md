@@ -95,7 +95,9 @@ Traceability is `docs/TRACEABILITY.md` (generated). Amendments are logged in
       only shows *it runs* demonstrates nothing. **The ablation is the demo.**
     - Must end by saying what it does **not** show — the claims that only appear at scale.
       A demo presented as a reproduction is Silent Failure #4 wearing a lab coat.
-    - Lives at `lab/papers/<paper-slug>/`, printed in full in the part with its `Line by line`.
+    - Lives at `days/day-NNN-<slug>/papers/<paper-slug>/` — the day's own `papers/` directory,
+      a **sibling of `lab/`, never inside it** (`lab/` is scratch; `papers/` is finished work anyone
+      can run). `demo.py` + `README.md`. Printed in full in the part with its `Line by line`.
     - **If you cannot isolate it, you have not understood it.** A demo that keeps dragging in the
       rest of the transformer is a signal to re-read, not to write a bigger demo. The one exception
       is a paper whose contribution *is* a system property (continuous batching, FSDP) — there the

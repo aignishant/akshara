@@ -218,9 +218,11 @@ argument-hint: [day-number]
     - **State what it does not show.** A 500-step run on synthetic data reproduces the *mechanism*
       and the *direction* of the effect, never the paper. Say which, in words. **A demo presented as
       a reproduction is Silent Failure #4 wearing a lab coat.**
-    - It lives at `lab/papers/<paper-slug>/` (`demo.py` plus a `README.md` saying what it shows and
-      what it does not), is printed in full in the part, and carries its `Line by line` and, if it
-      touches tensors, its `Shapes`.
+    - It lives at `days/day-NNN-<slug>/papers/<paper-slug>/` — the day's own `papers/` directory,
+      a **sibling of `lab/`, never inside it**. `lab/` is the learner's scratch space; `papers/`
+      holds finished demonstrations a part references and anyone can run. Each holds `demo.py` plus
+      a `README.md` saying what it shows and what it does not. It is printed in full in the part and
+      carries its `Line by line` and, if it touches tensors, its `Shapes`.
     - **A parked 🅿️ paper still gets its small project.** 🅿️ means "not built into Akshara", never
       "not built at all": you can build a fifty-line selective scan on a toy sequence without
       building a Mamba.

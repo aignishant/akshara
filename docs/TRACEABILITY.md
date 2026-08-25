@@ -1,9 +1,9 @@
 # 🧵 Traceability — Project Akshara
 
-_Generated 2026-08-25 by `scripts/trace.py` from the master plan's §24 and the day hubs._
+_Generated 2026-08-26 by `scripts/trace.py` from the master plan's §24 and the day hubs._
 **Do not edit by hand** — the next `./m check` overwrites it.
 
-**0 / 309 IDs closed** across 0 written day(s) of 162 planned.
+**4 / 309 IDs closed** across 2 written day(s) of 162 planned.
 
 An ID is *closed* when the day the plan assigns it exists on disk and its hub claims it.
 **An open ID in a fully written phase is a bug** (plan §26).
@@ -16,8 +16,8 @@ Every written day claims exactly the IDs §24 assigns it.
 
 | Phase | Days | Theme | Written | IDs closed |
 | --- | --- | --- | --- | --- |
-| 0 | 0–0 | Foundry: the machine, the skeleton, the driver | — 0/1 | 0/0 |
-| 1 | 1–8 | The ground: tensors, gradients, information | — 0/8 | 0/20 |
+| 0 | 0–0 | Foundry: the machine, the skeleton, the driver | ✅ 1/1 | 0/0 |
+| 1 | 1–8 | The ground: tensors, gradients, information | … 1/8 | 4/20 |
 | 2 | 9–17 | Text becomes numbers | — 0/9 | 0/20 |
 | 3 | 18–22 | Representation | — 0/5 | 0/10 |
 | 4 | 23–28 | Before attention: the sequence problem | — 0/6 | 0/9 |
@@ -59,4 +59,4 @@ Every written day claims exactly the IDs §24 assigns it.
 | `GEN` — Generative families | 0 | 21 |
 | `SAFE` — Safety | 0 | 20 |
 | `SERVE` — Serving | 0 | 16 |
-| `OPS` — Operations | 0 | 10 |
+| `OPS` — Operations | 4 | 10 |

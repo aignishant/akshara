@@ -68,7 +68,7 @@ and their order, the missing `papers:` key, and a hub whose declared paper count
 - The distinction between `[reported: Table 3]` and `[measured here: seed 1337]` becomes a habit
   rather than a rule, which is the only way Principle 8 survives 162 days. The small project is what
   forces it: the learner ends up holding both numbers at once.
-- The small projects accumulate into something unplanned but valuable — a `lab/papers/` tree of
+- The small projects accumulate into something unplanned but valuable — a `papers/` tree of
   ~130 minimal, runnable, individually ablatable implementations of the field's core results.
 
 **Costly, accepted.**

@@ -18,7 +18,7 @@ Rules:
 - A paper cited *in passing* by a part but not taught still gets a row, marked `cited` in `Taught?`.
   A paper that gets a part is marked `taught`. That distinction is the whole point of the ledger:
   it makes "we mentioned it" and "we explained it" different, checkable states.
-- `Demo` is the path to the paper's small project — `lab/papers/<slug>/` — the smallest runnable
+- `Demo` is the path to the paper's small project — `papers/<slug>/` — the smallest runnable
   thing that implements that paper's contribution and nothing else (§25.10.2 section 9). Every
   `taught` row has one, including parked 🅿️ papers. A `taught` row with an empty `Demo` cell is a
   part that described a paper instead of demonstrating it.

@@ -1,6 +1,6 @@
 # 📇 Curriculum index — Project Akshara
 
-_Generated 2026-08-25 by `scripts/trace.py` from the master plan's §24._
+_Generated 2026-08-26 by `scripts/trace.py` from the master plan's §24._
 **Do not edit by hand.**
 
 §24 answers *what does day 88 teach?* This file answers the reverse — *where do I learn
@@ -390,10 +390,10 @@ remember. Every ID appears exactly once; a duplicate or a missing ID is a plan b
 
 | ID | Day | Day title |
 | --- | --- | --- |
-| `OPS-01` | 1 | Bootstrap & the map — repo, `.env` + `.gitignore`, uv + Python 3.12, the five ledgers, `… |
-| `OPS-02` | 1 | Bootstrap & the map — repo, `.env` + `.gitignore`, uv + Python 3.12, the five ledgers, `… |
-| `OPS-03` | 1 | Bootstrap & the map — repo, `.env` + `.gitignore`, uv + Python 3.12, the five ledgers, `… |
-| `OPS-04` | 1 | Bootstrap & the map — repo, `.env` + `.gitignore`, uv + Python 3.12, the five ledgers, `… |
+| `OPS-01` | [1](../days/day-001-bootstrap-and-map/LESSON.md) | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hugging Face token, the… |
+| `OPS-02` | [1](../days/day-001-bootstrap-and-map/LESSON.md) | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hugging Face token, the… |
+| `OPS-03` | [1](../days/day-001-bootstrap-and-map/LESSON.md) | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hugging Face token, the… |
+| `OPS-04` | [1](../days/day-001-bootstrap-and-map/LESSON.md) | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hugging Face token, the… |
 | `OPS-05` | 59 | Determinism, seeds, and testing ML code — what a unit test for a layer looks like; the `… |
 | `OPS-06` | 59 | Determinism, seeds, and testing ML code — what a unit test for a layer looks like; the `… |
 | `OPS-07` | 64 | Tokenizing a corpus at scale — the memmap file; and what never enters git |

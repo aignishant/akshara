@@ -69,7 +69,9 @@ days/day-NNN-<slug>/   # the number is the identity; the slug says what the day 
 │   │   └── 1.2-<slug>.md
 │   └── 02-<slug>/ # section 2
 │       └── 2.1-<slug>.md
-└── lab/           # you create this; `./m scaffold NNN` makes the folder
+├── papers/        # one runnable demo per paper the day teaches — see "Paper parts" below
+│   └── <slug>/    #   demo.py + README.md. Absent on days that rest on no papers.
+└── lab/           # your own scratch code; `./m scaffold NNN` makes it
 ```
 
 **Read the hub first, then the parts in numerical order.** The hub's §2 map is the table of
@@ -130,7 +132,7 @@ A paper part carries the eleven sections above plus three of its own:
 
 | Section | What it's for |
 | --- | --- |
-| **The paper in one small project** | The smallest **end-to-end runnable project** that implements the paper's contribution and **nothing else** — one command, on your CPU, printing a result. It always includes the **A/B**: the same project with the paper's idea switched off. A demo that only shows *it runs* demonstrates nothing; **the ablation is the demo.** It lives in `lab/papers/<slug>/`, and it ends by saying what it does *not* show. |
+| **The paper in one small project** | The smallest **end-to-end runnable project** that implements the paper's contribution and **nothing else** — one command, on your CPU, printing a result. It always includes the **A/B**: the same project with the paper's idea switched off. A demo that only shows *it runs* demonstrates nothing; **the ablation is the demo.** It lives in the day's own `papers/<slug>/` — a sibling of `lab/`, not inside it — and it ends by saying what it does *not* show. |
 | **What the paper showed** | The evidence, cited to its table or section, with numbers **as reported** — then what that evidence does *and does not* support. This is where your demo's number and theirs get compared out loud. |
 | **What came after** | Corrections, superseding work, failed reproductions, what the community quietly stopped doing. **A paper taught as the final word is taught wrong.** |
 

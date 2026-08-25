@@ -928,12 +928,20 @@ Three consequences you should hold on to:
 > Day 0 closes no IDs by design: it is the machine, the skeleton and the driver, which are
 > preconditions for the curriculum rather than part of it. That is what keeps `TRACEABILITY.md`
 > valid — no ID is assigned to a day that teaches no concept.
+>
+> **The Day 0 / Day 1 boundary, stated so it cannot drift.** Day 0 builds a repo that could belong
+> to *any* Python project: one tool owning the environment, a directory skeleton, a `.gitignore`
+> that blocks **artifacts** (checkpoints, datasets — the rule that makes this repo unlike a web
+> app), the `./m` driver, and the depth check. Day 1 makes that repo **Akshara's**: the layout as an
+> argument rather than a `mkdir`, the `.env` and Hugging Face token that block **secrets**, the
+> seven ledgers plus `trace.py`/`tracker.py`, and the free-compute accounts. `.gitignore` is touched
+> on both days for two genuinely different reasons, and each day says which.
 
 #### Phase 1 — The ground (Days 1–8)
 
 | Day | Title | IDs closed |
 | --- | --- | --- |
-| 1 | Bootstrap & the map — repo, `.env` + `.gitignore`, uv + Python 3.12, the five ledgers, `scripts/trace.py`, and the free-compute accounts | OPS-01, OPS-02, OPS-03, OPS-04 |
+| 1 | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hugging Face token, the seven ledgers and `scripts/trace.py`, and the free-compute accounts | OPS-01, OPS-02, OPS-03, OPS-04 |
 | 2 | Tensors — shape, dtype, stride, device, broadcasting; the matmul that is 90% of everything you will run | MATH-01, MATH-02, MATH-03 |
 | 3 | Derivatives by hand — the chain rule as a graph, and a scalar autograd engine you write | MATH-04, MATH-05 |
 | 4 | Backprop through a layer — the transpose everyone gets wrong, proved by finite differences | MATH-06, MATH-07 |
@@ -1442,6 +1450,8 @@ days/day-NNN-<day-slug>/
 │   │   └── 2.1-<slug>.md
 │   └── 03-<slug>/
 │       └── 3.1-<slug>.md
+├── papers/            # one directory per paper the day teaches — the small projects (§25.10)
+│   └── <paper-slug>/  #   demo.py + README.md; absent when the day rests on no papers
 └── lab/               # created by ./m scaffold NNN; the learner's own scratch code
 ```
 
@@ -1708,19 +1718,32 @@ The section is named `NN-the-papers/` (or `NN-the-paper/` when there is one). Wh
 a paper — Day 40, reading the original transformer paper — the paper parts are the day, spread over
 several sections, and §25.10.2 still governs each one.
 
-Each paper part's small project (§25.10.2 section 9) lives in the day's lab, one directory per paper:
+Each paper part's small project (§25.10.2 section 9) lives in the day's own `papers/` directory,
+one subdirectory per paper — a **sibling of `lab/`, not inside it**. `lab/` is the learner's scratch
+space and is theirs to make a mess of; `papers/` holds finished, runnable demonstrations that are
+part of the day's teaching and are referenced from a part:
 
 ```
 days/day-043-rope-and-alibi/
-└── lab/
-    └── papers/
-        ├── roformer-rope/
-        │   ├── demo.py          # runs on CPU, one command, prints a number
-        │   └── README.md        # what it shows, what it does NOT show
-        └── alibi/
-            ├── demo.py
-            └── README.md
+├── LESSON.md
+├── CHECKLIST.md
+├── parts/
+│   └── 03-the-papers/
+│       ├── 3.1-roformer-rope.md
+│       └── 3.2-train-short-test-long-alibi.md
+├── papers/                      ⟵ one directory per paper, named for its slug
+│   ├── roformer-rope/
+│   │   ├── demo.py              # runs on CPU, one command, prints a number
+│   │   └── README.md            # what it shows, what it does NOT show
+│   └── alibi/
+│       ├── demo.py
+│       └── README.md
+└── lab/                         # the learner's own scratch code — separate on purpose
 ```
+
+The part at `parts/03-the-papers/3.1-roformer-rope.md` prints `papers/roformer-rope/demo.py` in full
+and links to it. **The path is `<day>/papers/<paper-slug>/`**, so a reader who wants to run every
+demonstration in the curriculum can find them all with one glob, without wading through scratch code.
 
 The project is printed in full in the part, with its `Line by line` walkthrough, and typed by the
 learner like every other line of code in this curriculum.
@@ -1767,8 +1790,12 @@ under the same conditions, plus **three more that are unconditional for paper pa
 6. **A parked 🅿️ concept still gets its paper part** — *including its small project*. You are not
    building a Mamba, and you can still build a fifty-line selective scan on a toy sequence and watch
    it do the thing the paper claims. 🅿️ means "not built into Akshara", never "not built at all".
-7. **The small project lives in the day's lab**, at `lab/papers/<paper-slug>/`, and is printed in
-   full in the part with its `Line by line` walkthrough. The learner types it, like all other code.
+7. **The small project lives at `days/day-NNN-<slug>/papers/<paper-slug>/`** — the day's own
+   `papers/` directory, a **sibling of `lab/`, never inside it**. `lab/` is scratch space the learner
+   owns and may leave in any state; `papers/` holds finished demonstrations that a part references
+   and that anyone should be able to run. Each holds `demo.py` and a `README.md` saying what it shows
+   and what it does not. It is printed in full in the part with its `Line by line` walkthrough, and
+   the learner types it, like all other code in this curriculum.
 8. **The small project must be honest about its scale.** It will not reproduce the paper — a 500-step
    run on synthetic data never does. It reproduces the *mechanism* and the *direction* of the
    paper's effect. The part says which, in words, and the `What the paper showed` section that

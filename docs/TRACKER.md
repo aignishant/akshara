@@ -1,8 +1,8 @@
 # 📊 Tracker — Project Akshara
 
-_Generated 2026-08-25 by `scripts/tracker.py`._ **Do not edit by hand.**
+_Generated 2026-08-26 by `scripts/tracker.py`._ **Do not edit by hand.**
 
-**0 / 162 days complete** · 0 written on disk · 0 part documents in total.
+**0 / 162 days complete** · 2 written on disk · 27 part documents in total.
 
 `complete` means a row in `docs/PROGRESS.md` (plan §27). `written` means the folder exists
 with a `parts/` directory. A day with no `parts/` is not written, whatever the folder looks
@@ -11,17 +11,17 @@ like (plan §25.2).
 **Read the parts column.** A day closing three IDs with two parts is thin, and thin is
 visible from this table without opening the day.
 
-## ⬜ Phase 0 — Foundry: the machine, the skeleton, the driver  (0/1 complete)
+## 🚧 Phase 0 — Foundry: the machine, the skeleton, the driver  (0/1 complete)
 
 | Day | Title | IDs | Parts | Sections | Status |
 | --- | --- | --- | --- | --- | --- |
-| 0 | Toolchain, skeleton and the `./m` driver — one owner for the environ… | 0 | — | — | ⬜ pending |
+| [0](../days/day-000-toolchain-skeleton-driver/LESSON.md) | Toolchain, skeleton and the `./m` driver — one owner for the environ… | 0 | 13 | 6 | 🚧 written |
 
-## ⬜ Phase 1 — The ground: tensors, gradients, information  (0/8 complete)
+## 🚧 Phase 1 — The ground: tensors, gradients, information  (0/8 complete)
 
 | Day | Title | IDs | Parts | Sections | Status |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Bootstrap & the map — repo, `.env` + `.gitignore`, uv + Python 3.12,… | 4 | — | — | ⬜ pending |
+| [1](../days/day-001-bootstrap-and-map/LESSON.md) | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hug… | 4 | 14 | 4 | 🚧 written |
 | 2 | Tensors — shape, dtype, stride, device, broadcasting; the matmul tha… | 3 | — | — | ⬜ pending |
 | 3 | Derivatives by hand — the chain rule as a graph, and a scalar autogr… | 2 | — | — | ⬜ pending |
 | 4 | Backprop through a layer — the transpose everyone gets wrong, proved… | 2 | — | — | ⬜ pending |
