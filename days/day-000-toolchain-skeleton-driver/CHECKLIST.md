@@ -132,7 +132,7 @@ have.**
 - [ ] `docs/PROGRESS.md` row pasted from hub §11, with your real commit sha
 - [ ] `docs/PACKAGES.md` rows pasted — **five rows, with the versions your machine printed**, not the
       ones in the document
-- [ ] Confirmed **no** `DATASETS.md`, `MODELS.md`, `RUNS.md` or `PAPERS.md` rows are needed today, and
+- [ ] Confirmed **no** `DATASETS.md`, `MODELS.md` or `RUNS.md` rows are needed today, and
       can say why for each
 - [ ] `docs/TRACKER.md` regenerated (`./m tracker`)
 

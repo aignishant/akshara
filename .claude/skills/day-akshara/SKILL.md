@@ -4,13 +4,13 @@ description: Generate the hub, the parts/ sub-documents, the lab scaffold and th
 argument-hint: [day-number]
 ---
 
-# Generate Day $ARGUMENTS of the Akshara plan (v1.1.0 — hub + `parts/` + paper parts)
+# Generate Day $ARGUMENTS of the Akshara plan (v1.2.0 — hub + `parts/`)
 
 > **Read `docs/00_MASTER_PLAN.md` §25 before writing a single line, and §6 before writing a single
 > line of code.** §25 is the depth contract this skill implements; §6 is the five silent failures
 > that make generative work go wrong quietly. This skill is the procedure; the plan is the standard.
 
-## The five commitments (§25.1 + §25.10 — everything below follows from these)
+## The four commitments (§25.1 — everything below follows from these)
 
 1. **One idea per document.** If it needs "also" to introduce its second half, it is two documents.
 2. **No clocks.** Never write a time estimate, a duration, an "estimated hours" field, or a pace —
@@ -21,19 +21,14 @@ argument-hint: [day-number]
    research engineer writes instead, what a reviewer says, what an interviewer probes.
 4. **Every number has a provenance.** Measured here — with hardware, seed and date — or cited with
    an arXiv id and section. **Never recalled.** This is the rule you are most likely to break.
-5. **A paper the field rests on is taught, not cited** (Principle 21). It gets its own part, and
-   that part contains **the smallest runnable project that implements the paper and nothing else**,
-   with the A/B that switches its idea off. Naming a paper and moving on is the citation equivalent
-   of an unexplained line of code.
 
 ---
 
 ## Step 1 — gather
 
-1. Read the plan: **§2** (the twenty-one principles), **§4** (the compute tiers), **§6** (the five
-   silent failures), **§24** (the day map — the authoritative ID list for day $ARGUMENTS, and
-   **§24.3 the paper roster**), **§25** (the depth contract, and **§25.10 the paper-part
-   contract**), **§28** (the style guide). Collect every ID slotted to day $ARGUMENTS, the
+1. Read the plan: **§2** (the twenty principles), **§4** (the compute tiers), **§6** (the five
+   silent failures), **§24** (the day map — the authoritative ID list for day $ARGUMENTS),
+   **§25** (the depth contract), **§28** (the style guide). Collect every ID slotted to day $ARGUMENTS, the
    phase theme, and the gate that phase feeds.
 2. Read `docs/PROGRESS.md`. **Confirm $ARGUMENTS is exactly one more than the last row.** If it is
    not, say so and stop — do not generate out of order (plan §26: never skip, merge or reorder a day
@@ -160,88 +155,18 @@ argument-hint: [day-number]
 23. **Shape comments in every code block**: `x = tok_emb + pos_emb  # (B, T, C)` on every line that
     changes a shape. The `Shapes` table is the summary; the comments are the working.
 
-## Step 4b — write the paper parts (Principle 21 · §25.10)
-
-> Do this **after** the teaching parts exist. The mechanism is taught first, in plain language and
-> running code, so that the reader opens the paper already understanding the idea and reads it for
-> *how it was argued and what it cost*. A reader sent to the paper first learns to be intimidated by
-> papers.
-
-24. **Look the day up in the plan's §24.3 roster.** It lists the papers this day rests on, **by title
-    and year only** — deliberately, because an arXiv id is a number and Principle 8 forbids writing
-    one from memory. The roster is the **floor**: a day may add a paper it turns out to need (a
-    `docs/PAPERS.md` row and a part, no amendment); removing one *is* an amendment.
-    If §24.3 lists none, the hub gets `papers: []` and you skip to Step 5. **`papers: []` is an
-    explicit statement that you checked**, and 74 of the 162 days legitimately have it.
-25. **Resolve each identifier live and write `docs/PAPERS.md` first.** Fetch the arXiv abstract page
-    (or the venue page where there is no arXiv id), confirm the exact title and year, and write the
-    row — paper, year, identifier, day, part path, demo path, `taught`, the URL you fetched, and the
-    date — **before** you write a word of the part.
-26. **Read the actual paper.** A paper part written from an abstract, a blog summary or memory is
-    worse than none: it launders unreliability through the appearance of a citation. Note which
-    sections matter and which the reader can skip — you will say so in the part.
-27. **One paper, one part**, in a dedicated section **last in the day**: `parts/NN-the-papers/`
-    (or `NN-the-paper/` when there is one). Each part declares `kind: paper`, `paper_title`,
-    `paper_year`, and `paper_arxiv` **or** `paper_venue`.
-28. Each paper part carries the nine unconditional sections **plus three**, in this order —
-    `The mechanism` → **`The paper in one small project`** → **`What the paper showed`** →
-    `When it breaks` → **`What came after`** → `In production`:
-    - **The story is the world before the paper** — what people were actually doing and what it cost
-      them, told from inside the year it was written, with no hindsight and no jargon.
-    - **The mechanism reads the equation symbol by symbol.** `Line by line`, applied to mathematics:
-      an unexplained symbol is a bug in the doc. The `Shapes` table maps the paper's notation onto
-      the curriculum's (`B`, `T`, `C`, `H`, `hs`, `V`).
-    - **`The paper in one small project`** — see step 29, which is the hard one.
-    - **`What the paper showed`** — the evidence, cited to its table or section (`Table 3`, `§5.2`),
-      numbers **as reported**, then what the evidence does *and does not* support: the ablation not
-      run, the baseline not tuned, the single seed. **Compare your demo's number to theirs here**,
-      out loud, including why they differ.
-    - **`What came after`** — corrections, superseding work, failed reproductions, what the community
-      quietly stopped doing. A paper taught as the final word is taught wrong.
-    - **`Check yourself` must send the reader into the paper**: *"read §3.2.1 and say out loud what
-      breaks if the scaling is removed."* They open the PDF at least once per paper part.
-29. **Write the small project.** This is the section that makes a paper part worth reading, and it is
-    the hardest thing in this skill to get right.
-    - **The smallest end-to-end runnable project that implements the paper's contribution and
-      nothing else.** Not a snippet — a project: starts from nothing, runs with one command, prints
-      a result. No surrounding model, no other features, no scaffolding the paper did not introduce.
-    - **The isolation is the pedagogy.** Stripping an idea to the smallest thing that still
-      demonstrates it is the proof you understood what the paper actually added. **If you cannot
-      isolate it, you have not understood it** — that is a signal to re-read, never a signal to
-      write a bigger demo. The one genuine exception is a paper whose contribution *is* a
-      system-level property (continuous batching, FSDP): there the project simulates the mechanism —
-      a queue of fake requests, a fake device mesh — and says so plainly.
-    - **T0 only.** Laptop CPU, seconds to a couple of minutes, synthetic or tiny data. A paper part
-      the learner cannot run is a paper part they will not run.
-    - **The A/B is mandatory.** The same project with the paper's idea switched off, printed side by
-      side. A demo that only shows *it runs* demonstrates nothing — **the ablation is the demo.**
-    - **State what it does not show.** A 500-step run on synthetic data reproduces the *mechanism*
-      and the *direction* of the effect, never the paper. Say which, in words. **A demo presented as
-      a reproduction is Silent Failure #4 wearing a lab coat.**
-    - It lives at `days/day-NNN-<slug>/papers/<paper-slug>/` — the day's own `papers/` directory,
-      a **sibling of `lab/`, never inside it**. `lab/` is the learner's scratch space; `papers/`
-      holds finished demonstrations a part references and anyone can run. Each holds `demo.py` plus
-      a `README.md` saying what it shows and what it does not. It is printed in full in the part and
-      carries its `Line by line` and, if it touches tensors, its `Shapes`.
-    - **A parked 🅿️ paper still gets its small project.** 🅿️ means "not built into Akshara", never
-      "not built at all": you can build a fifty-line selective scan on a toy sequence without
-      building a Mamba.
-30. **Label every number**: `[reported: Table 3]` versus `[measured here: CPU, seed 1337,
-    2026-08-25]`. Mixing the two is how a curriculum starts lying to itself.
-
 ## Step 5 — write the hub (`days/day-NNN-<slug>/LESSON.md`)
 
-31. The hub orients and assembles; **it never teaches**. No `Line by line:` and no `Shapes` table in
+24. The hub orients and assembles; **it never teaches**. No `Line by line:` and no `Shapes` table in
     the hub. Required sections, in order (§25.5):
     - YAML frontmatter (`day`, `phase`, `phase_name`, `title`, `ids`, `principles`, `kind`,
-      `plan_version: "v1.1.0"`, `parts`, `papers` (the list from §24.3 — **`papers: []` when the
-      day rests on none**), `compute_tier`, `generated`, `status`, `lab_scaffolded`, `commit`)
+      `plan_version: "v1.2.0"`, `parts`, `compute_tier`, `generated`, `status`, `lab_scaffolded`,
+      `commit`)
     - a **yesterday / today / tomorrow** blockquote — no time estimate
     - `## §1 Where we are` — a scene and an analogy, plain language, NO code, NO jargon
     - `## §2 The map` — a table of every part: number, linked title
       (`parts/01-<slug>/1.1-<slug>.md`), what it answers, `level`, grouped by section with one line
-      saying what each *section* means. **The paper section is listed like any other.**
-      **No minutes column, ever.**
+      saying what each *section* means. **No minutes column, ever.**
     - `## §3 Setup — run this` — every `mkdir`, `touch`, `uv add` the day needs, pinned; plus the
       notebook link if the day is T1
     - `## §4 Build brief` — files to create, with `TODO(me)` markers left unsolved
@@ -249,39 +174,31 @@ argument-hint: [day-number]
     - `## §6 Compute budget` — the tier (T0/T1/T2); for T1, GPU-minutes and session count. `0` is an
       answer; state it.
     - `## §7 Traps` — the mistakes that eat an evening, including the named Silent Failure (§6)
-    - `## §8 Verify before you code` — the live URLs actually fetched, **every paper's arXiv page
+    - `## §8 Verify before you code` — the live URLs actually fetched, **every arXiv page cited,
       with the date you opened it**, the model/dataset cards read. Never from memory.
     - `## §9 Say it in an interview` — one paragraph, spoken voice, tied to a number you measured
     - `## §10 Done when` — pointer to `CHECKLIST.md`, defined by understanding and green checks
     - `## §11 Ledger & commit` — the verbatim `PROGRESS.md` row, any `PACKAGES.md`, `DATASETS.md`,
-      `MODELS.md`, `RUNS.md` and `PAPERS.md` rows, and the commit message
+      `MODELS.md` and `RUNS.md` rows, and the commit message
       `day NNN: <title> — closes <IDs>`. **The hub ends here.**
 
 ## Step 6 — the checklist (`days/day-NNN-<slug>/CHECKLIST.md`)
 
-32. Demo command, setup boxes, **one box per part document** (read it, run its check-yourself,
+25. Demo command, setup boxes, **one box per part document** (read it, run its check-yourself,
     answer its out-loud question), build-brief boxes, a test box per test **including at least one
     "break it, watch it go red, fix it"**, the compute budget, the ledger rows pasted, and the commit
     box. No time estimates.
-33. **On any day with papers, the checklist must include, per paper:**
-    - [ ] Opened the actual paper — not an abstract, not a summary — and the `docs/PAPERS.md` row
-          records the URL and the date it was opened
-    - [ ] Typed and ran the small project; can state the number it printed
-    - [ ] Ran the **A/B** and watched the paper's effect appear and disappear
-    - [ ] Can say what the demo does **not** show, and why the paper's number differs from yours
-    - [ ] Read the section named in *Check yourself* and answered its question out loud
-
-34. **On any day that trains something, the checklist must include:**
+26. **On any day that trains something, the checklist must include:**
     - [ ] Overfit one batch first — loss reached ~0 on 16 examples before the real run (P12)
     - [ ] The `docs/RUNS.md` row is written: seed, config hash, hardware, steps, final loss, outcome
     - [ ] Which of the five silent failures (§6) this run could have hit, and how you ruled it out
 
 ## Step 7 — verify
 
-35. Run `./m depth $ARGUMENTS`. **Fix every failure; never hand-wave past one.**
-36. Run `./m trace` — the day's IDs must match §24 exactly, no more and no fewer.
-37. Run `./m tracker`.
-38. Finish by printing: today's IDs, the part count, the demo command, the compute tier and budget,
+27. Run `./m depth $ARGUMENTS`. **Fix every failure; never hand-wave past one.**
+28. Run `./m trace` — the day's IDs must match §24 exactly, no more and no fewer.
+29. Run `./m tracker`.
+30. Finish by printing: today's IDs, the part count, the demo command, the compute tier and budget,
     and the doc URLs / arXiv ids you actually fetched.
 
 ---
@@ -316,7 +233,4 @@ Answer these out loud. If any answer is no, the day is not written.
 6. Does the day name which of the five silent failures it touches, and how to detect it?
 7. Does every step run on a laptop, or does the day say explicitly what needs a GPU and what the CPU
    version proves?
-8. Does every paper the day rests on have its own part — with a small project that runs on a CPU,
-   an A/B that switches the paper's idea off, and an honest note about what it does not show?
-9. Is every number in a paper part labelled `[reported: …]` or `[measured here: …]`?
-10. Did `./m depth $ARGUMENTS` pass without you arguing with it?
+8. Did `./m depth $ARGUMENTS` pass without you arguing with it?

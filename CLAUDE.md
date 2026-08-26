@@ -65,69 +65,6 @@ Traceability is `docs/TRACEABILITY.md` (generated). Amendments are logged in
   turns out to hold two ideas, split it — by ADR — and the count moves. That is the plan working.
 - **Shapes are stated, never inferred** (P20). Any part introducing or transforming a tensor carries
   a `## Shapes` table. More transformer bugs are shape bugs than algorithm bugs.
-- **A paper the field rests on is taught, not cited** (P21). Where a day's concept comes from a
-  specific paper, that paper gets **its own part**, in the day's own paper section (§24.3, §25.10).
-  **Naming a paper and moving on is the citation equivalent of an unexplained line of code.**
-
----
-
-## 📄 Paper parts (plan §25.10 · Principle 21)
-
-**130 papers across 88 of the 162 days** (the roster is plan §24.3). The rules:
-
-- **One paper, one part.** They live in a dedicated section, **last in the day** —
-  `parts/NN-the-papers/` — because the mechanism is taught first, in plain language and running
-  code, so the reader opens the paper already understanding the idea and reads it for *how it was
-  argued and what it cost*. A reader sent to the paper first learns to be intimidated by papers.
-- A paper part declares `kind: paper`, `paper_title`, `paper_year`, and `paper_arxiv` **or**
-  `paper_venue` in its frontmatter.
-- It carries the nine unconditional sections **plus three more**, in this order:
-  `The mechanism` → **`The paper in one small project`** → **`What the paper showed`** →
-  `When it breaks` → **`What came after`** → `In production`.
-  - **`The paper in one small project`** — the smallest **end-to-end runnable project** that
-    implements the paper's contribution **and nothing else**. Not a snippet: it starts from nothing,
-    runs with one command, and prints a result. No surrounding model, no other features, no
-    scaffolding the paper did not introduce. **The isolation is the pedagogy** — stripping an idea
-    to the smallest thing that still demonstrates it is the proof you understood what the paper
-    added, and it is the hardest part of writing one of these.
-    - Must run at **T0** — laptop CPU, seconds to a couple of minutes, synthetic or tiny data.
-    - **Must include the A/B**: the same project with the paper's idea switched off. A demo that
-      only shows *it runs* demonstrates nothing. **The ablation is the demo.**
-    - Must end by saying what it does **not** show — the claims that only appear at scale.
-      A demo presented as a reproduction is Silent Failure #4 wearing a lab coat.
-    - Lives at `days/day-NNN-<slug>/papers/<paper-slug>/` — the day's own `papers/` directory,
-      a **sibling of `lab/`, never inside it** (`lab/` is scratch; `papers/` is finished work anyone
-      can run). `demo.py` + `README.md`. Printed in full in the part with its `Line by line`.
-    - **If you cannot isolate it, you have not understood it.** A demo that keeps dragging in the
-      rest of the transformer is a signal to re-read, not to write a bigger demo. The one exception
-      is a paper whose contribution *is* a system property (continuous batching, FSDP) — there the
-      project simulates the mechanism and says so.
-  - **`What the paper showed`** — the evidence, cited to the table or section it came from
-    (`Table 3`, `§5.2`), with numbers **as reported**, then what the evidence does *and does not*
-    support: the ablation not run, the baseline not tuned, the single seed. **This is where your
-    demo's number and their number get compared out loud**, including why they differ.
-  - **`What came after`** — corrections, superseding work, failed reproductions, what the community
-    quietly stopped doing. **A paper taught as the final word is taught wrong.**
-- **The story is the world before the paper** — told from inside the year it was written, with no
-  hindsight and no jargon.
-- **The mechanism reads the equation symbol by symbol.** This is `Line by line` applied to
-  mathematics: **an unexplained symbol is a bug in the doc.**
-- **`Check yourself` must send the reader into the paper** — *"read §3.2.1 and say out loud what
-  breaks if the scaling is removed."*
-- **Resolve the identifier live, never from memory** (P8). An arXiv id is a number. Plan §24.3 lists
-  papers by *title and year only* on purpose. Fetch it, then write the `docs/PAPERS.md` row
-  **before** writing the part.
-- **Label every number**: `[reported: Table 3]` vs `[measured here: T4, seed 1337, 2026-08-25]`.
-  Mixing the two is how a curriculum starts lying to itself.
-- **Read the actual paper.** A paper part written from an abstract, a blog summary or memory is
-  worse than none — it launders unreliability through the appearance of a citation.
-- **Say what you skipped**: *"§6 is a machine-translation evaluation you can skip."*
-- **A parked 🅿️ paper still gets its small project.** 🅿️ means "not built into Akshara", never
-  "not built at all" — you can build a fifty-line selective scan on a toy sequence without building
-  a Mamba.
-- Every hub declares `papers:`. **`papers: []` is the answer when a day rests on none** — an empty
-  list is a decision, a missing key is an oversight. `./m depth` fails on a missing key, and on a
-  hub whose declared paper count disagrees with the `kind: paper` parts on disk.
 
 ---
 
@@ -193,15 +130,12 @@ days/day-NNN-<day-slug>/
   part that explains it. A deferred explanation must have an address.
 - **The provenance test:** every number is measured-here or cited. No exceptions.
 - **Every day carries at least one part whose subject is a deliberate failure** (§25.7).
-- **Every paper the day rests on carries its own part**, in the day's paper section (§25.10). The
-  hub declares `papers:`; `papers: []` when there are none.
 - **The hub ends with §11 Ledger & commit** — the verbatim `PROGRESS.md` row, any `PACKAGES.md`,
-  `DATASETS.md`, `MODELS.md`, `RUNS.md` and `PAPERS.md` rows, and the commit message. Ritual is
+  `DATASETS.md`, `MODELS.md` and `RUNS.md` rows, and the commit message. Ritual is
   the point: the
   repo is the memory.
 - Run `./m depth NNN` after writing a day. It fails on missing sections, numbering gaps, unexplained
-  code blocks, a missing `Shapes` table, a missing or miscounted paper section, a smuggled-in
-  clock, and a hub that carries teaching.
+  code blocks, a missing `Shapes` table, a smuggled-in clock, and a hub that carries teaching.
   **Never hand-wave past a `depth` failure.**
 
 ### Generating a day

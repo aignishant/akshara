@@ -40,15 +40,7 @@
    checklist and green checks, never on hours elapsed.
    *(A measured duration — "the run took 43 minutes on a T4" — is data, not a clock. That stays.)*
 
-7. **A paper the field rests on is taught, not cited.** *(Principle 21)*
-   88 of the 162 days rest on a specific published result. Those days end with a **paper section** —
-   `parts/NN-the-papers/` — carrying **one part per paper**, written to the same contract as
-   everything else. You get the world before the paper, its actual equation read symbol by symbol,
-   **the smallest runnable project that implements it and nothing else**, what its evidence does and
-   does not support, what later work corrected, and what survived. Naming a paper and moving on is
-   the citation equivalent of an unexplained line of code.
-
-8. **Zero prior knowledge in, production knowledge out.** *(Principle 18)*
+7. **Zero prior knowledge in, production knowledge out.** *(Principle 18)*
    Every document starts where someone who has never heard of the idea can stand — the jargon is
    defined the first time it appears, including jargon from earlier days, with a link back. And no
    document stops at the toy example: each ends with **In production** — what a research engineer
@@ -69,8 +61,6 @@ days/day-NNN-<slug>/   # the number is the identity; the slug says what the day 
 │   │   └── 1.2-<slug>.md
 │   └── 02-<slug>/ # section 2
 │       └── 2.1-<slug>.md
-├── papers/        # one runnable demo per paper the day teaches — see "Paper parts" below
-│   └── <slug>/    #   demo.py + README.md. Absent on days that rest on no papers.
 └── lab/           # your own scratch code; `./m scaffold NNN` makes it
 ```
 
@@ -120,26 +110,6 @@ idea, to one who could defend it in a design review. This is the depth contract 
 | **In production** | what changes in a real system: scale, memory, throughput, the review comment, the interview question |
 | **Check yourself** | one command that prints a **number**, and one question to answer out loud |
 
-### Paper parts
-
-A day that rests on a paper carries a paper section **last**, one part per paper. The mechanism is
-taught first, in plain language and running code, so that when you open the paper you already
-understand the idea and are reading it for *how it was argued and what it cost* — which is the skill
-that section is actually building. A reader sent to the paper first learns to be intimidated by
-papers.
-
-A paper part carries the eleven sections above plus three of its own:
-
-| Section | What it's for |
-| --- | --- |
-| **The paper in one small project** | The smallest **end-to-end runnable project** that implements the paper's contribution and **nothing else** — one command, on your CPU, printing a result. It always includes the **A/B**: the same project with the paper's idea switched off. A demo that only shows *it runs* demonstrates nothing; **the ablation is the demo.** It lives in the day's own `papers/<slug>/` — a sibling of `lab/`, not inside it — and it ends by saying what it does *not* show. |
-| **What the paper showed** | The evidence, cited to its table or section, with numbers **as reported** — then what that evidence does *and does not* support. This is where your demo's number and theirs get compared out loud. |
-| **What came after** | Corrections, superseding work, failed reproductions, what the community quietly stopped doing. **A paper taught as the final word is taught wrong.** |
-
-Numbers in a paper part are always labelled: `[reported: Table 3]` or
-`[measured here: CPU, seed 1337, 2026-08-25]`. Those are different kinds of fact, and these
-documents never blur them.
-
 ### The `level` ladder
 
 Every part declares one, and a day climbs:
@@ -170,7 +140,6 @@ Used consistently across all 162 days. A part that introduces a new one defines 
 | 💥 | a deliberate failure — the part where you break it on purpose |
 | 🅿️ | parked: awareness-level, interview-ready, deliberately not built. **The arithmetic is still worked** — you must be able to size the thing you did not run. |
 | 🔍 | compare: the hand-rolled version already exists, and today you open the library and diff your understanding against theirs |
-| 📄 | a paper part — its own document, with its own small runnable project |
 | `TODO(me)` | yours to solve. The document never does the reps for you. |
 
 ---

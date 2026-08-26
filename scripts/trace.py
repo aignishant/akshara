@@ -69,11 +69,11 @@ MAP_ROW = re.compile(r"^\|\s*(\d{1,3})\s*\|(.+?)\|\s*(.+?)\s*\|\s*$")
 def parse_plan() -> tuple[dict[int, list[str]], dict[int, str]]:
     """Return (day -> [ids], day -> title) read from plan §24."""
     text = PLAN.read_text(encoding="utf-8")
-    # Slice §24.2 exactly, not all of §24. §24.1 (phases) and §24.3 (the paper roster) are also
-    # tables keyed by a day number, and parsing them as day-map rows silently clobbers real ID
-    # assignments with empty lists.
+    # Slice §24.2 exactly, not all of §24. §24.1 (the phase summary) is also a table keyed by a
+    # day number, and parsing it as day-map rows silently clobbers real ID assignments with
+    # empty lists. §24.2 is the last subsection of §24, so the slice ends at §25.
     start = text.index("### 24.2 The map")
-    end = text.index("### 24.3 The Paper Roster")
+    end = text.index("## 25 · 📐 The Depth Contract")
     body = text[start:end]
 
     day_ids: dict[int, list[str]] = {}

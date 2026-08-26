@@ -62,7 +62,7 @@ Expected: `OK all green`, a status line showing 2 days complete, then one commit
 
 ## OPS-03 — the ledgers (section 3)
 
-- [ ] Read 3.1; ran its check-yourself — **7 hand-written ledgers exist**, and the newest date is today
+- [ ] Read 3.1; ran its check-yourself — **6 hand-written ledgers exist**, and the newest date is today
 - [ ] Can answer out loud: why is a correction appended rather than applied, and why is a partially
       maintained ledger worse than an empty one?
 - [ ] Read 3.2; can name the columns of a `RUNS.md` row **from memory**
@@ -137,7 +137,7 @@ Expected: `OK all green`, a status line showing 2 days complete, then one commit
 - [ ] `docs/PROGRESS.md` row pasted from hub §11, with your real commit sha
 - [ ] `docs/PACKAGES.md` row for `nbstripout` with the version **your** lookup printed
 - [ ] Any T1 measurement rows added, dated today
-- [ ] Confirmed **no** `DATASETS.md`, `MODELS.md`, `RUNS.md` or `PAPERS.md` rows are needed today, and
+- [ ] Confirmed **no** `DATASETS.md`, `MODELS.md` or `RUNS.md` rows are needed today, and
       can say why for each
 - [ ] `./m tracker` regenerated, and `docs/TRACKER.md` shows Day 1 with 14 parts
 

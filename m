@@ -50,15 +50,6 @@ case "${1:-help}" in
     [ -n "$D" ] || { echo "no day $DAY yet - the day is written before its lab"; exit 1; }
     mkdir -p "$D/lab"
     echo "-> created $D/lab   (your scratch code)"
-    # papers/ is a sibling of lab/, never inside it (plan §25.10.1): lab/ is scratch the learner
-    # owns, papers/ holds finished runnable demonstrations a part references. Only created when
-    # the hub declares papers, so an empty papers/ never appears on a day that rests on none.
-    if [ -f "$D/LESSON.md" ] && grep -qE '^papers:\s*(\[.*[^][:space:]].*\]|$|\s*$)' "$D/LESSON.md" \
-       && ! grep -qE '^papers:\s*\[\s*\]\s*$' "$D/LESSON.md"; then
-      mkdir -p "$D/papers"
-      echo "-> created $D/papers   (one subdirectory per paper: demo.py + README.md)"
-      echo "   plan §25.10.2 section 9: smallest runnable project, only the paper, with the A/B"
-    fi
     ;;
 
   trace)

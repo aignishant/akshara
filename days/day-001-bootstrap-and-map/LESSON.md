@@ -6,9 +6,8 @@ title: "Bootstrap and the map"
 ids: ["OPS-01", "OPS-02", "OPS-03", "OPS-04"]
 principles: [1, 2, 6, 8, 9, 10, 13, 15, 16, 17, 18, 19]
 kind: setup
-plan_version: "v1.1.0"
+plan_version: "v1.2.0"
 parts: 14
-papers: []
 compute_tier: T0
 generated: "2026-08-26"
 status: written
@@ -22,7 +21,7 @@ commit: ""
 > work, a `.gitignore` written before there was anything to protect, a driver that refuses — and four
 > guards broken on purpose to prove they were alive.
 > **Today:** that generic Python repository becomes **Akshara's memory**. The layout acquires rules
-> about what it refuses to hold, a Hugging Face token gets exactly one home, ten ledgers start
+> about what it refuses to hold, a Hugging Face token gets exactly one home, nine ledgers start
 > recording what cannot be recovered later, and the free-compute accounts are set up with their real
 > costs measured rather than assumed.
 > **Tomorrow (Day 2):** the first actual mathematics — tensors, shapes, broadcasting, and the matmul
@@ -51,7 +50,7 @@ the time.
 So today is about deciding, deliberately, what gets written down — and where. The layout stops being
 folders and becomes a set of refusals: each directory says what would be *wrong* to put in it, which
 is the only kind of rule that carries information. The token gets one home and a read-only scope,
-because a credential's danger scales with the number of copies of it. Ten ledgers appear, seven
+because a credential's danger scales with the number of copies of it. Nine ledgers appear, six
 written by hand and three computed, and the difference between those two kinds is a genuine skill:
 anything derivable should be derived, because a fact stored twice will eventually disagree with
 itself.
@@ -245,7 +244,6 @@ Fetched on `2026-08-26`, not recalled (Principles 6, 7, 8):
 | `https://docs.python.org/3/library/os.html#os.environ` | `os.environ` is a mapping; `[]` raises `KeyError`, `.get()` returns `None` |
 | `nbformat` schema (v4) | that `outputs` is a per-cell array stored in the file — the basis of part 2.3 |
 | `nvidia-smi --help-query-gpu` | the `--query-gpu` field names used in part 4.2's measurement cell |
-| `docs/00_MASTER_PLAN.md` §24.3 | **papers for Day 1: none.** `papers: []` is a checked answer |
 
 ---
 
@@ -289,8 +287,8 @@ values:
 | colab-host (observed) | <RAM GB, disk free GB> | 2026-08-26 | 1 | Host limits — the binding constraint on Day 64's corpus tokenization, which is CPU and disk bound. |
 ```
 
-`docs/DATASETS.md`, `docs/MODELS.md`, `docs/RUNS.md`, `docs/PAPERS.md` — **no rows today.** Nothing
-was downloaded, nothing was trained, and §24.3 lists no papers for Day 1.
+`docs/DATASETS.md`, `docs/MODELS.md`, `docs/RUNS.md` — **no rows today.** Nothing was downloaded
+and nothing was trained.
 
 Commit:
 

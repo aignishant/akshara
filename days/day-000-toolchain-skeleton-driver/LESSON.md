@@ -6,9 +6,8 @@ title: "Toolchain, skeleton and the ./m driver"
 ids: []
 principles: [1, 2, 6, 9, 10, 11, 13, 16, 17, 18, 19, 20]
 kind: setup
-plan_version: "v1.1.0"
+plan_version: "v1.2.0"
 parts: 13
-papers: []
 compute_tier: T0
 generated: "2026-08-25"
 status: written
@@ -24,7 +23,7 @@ commit: ""
 > driver that gives every operation one name, and a gate that **refuses** to finish a day that is not
 > finished. Then you break all four guards on purpose and watch each one catch you.
 > **Tomorrow (Day 1):** the repository stops being a generic Python project and becomes Akshara's
-> memory — the seven ledgers, `scripts/trace.py`, the Hugging Face token, and the free-compute
+> memory — the six ledgers, `scripts/trace.py`, the Hugging Face token, and the free-compute
 > accounts (OPS-01..04).
 
 ---
@@ -265,7 +264,6 @@ Fetched on `2026-08-25`, not recalled (Principles 6, 7, 8):
 | `https://docs.astral.sh/ruff/settings/` | `line-length`, `extend-exclude`, `per-file-ignores` |
 | `https://docs.pytest.org/en/stable/reference/exit-codes.html` | exit code `5` = no tests collected — the basis of the `\|\| [ $? -eq 5 ]` clause |
 | `https://git-scm.com/docs/gitignore` | tracked files are unaffected by later patterns |
-| `docs/00_MASTER_PLAN.md` §24.3 | **papers for Day 0: none.** `papers: []` is a checked answer, not an omission |
 
 ---
 
@@ -310,8 +308,8 @@ cannot tell whether you were honest — that part is yours. Defined by understan
 | pytest | 9.1.1 | 2026-08-25 | 0 | Test runner behind `./m check`. Resolved with `uv pip compile`. Dev dependency. |
 ```
 
-`docs/DATASETS.md`, `docs/MODELS.md`, `docs/RUNS.md`, `docs/PAPERS.md` — **no rows today.** Nothing
-was downloaded, nothing was trained, no paper is taught (§24.3 lists none for Day 0).
+`docs/DATASETS.md`, `docs/MODELS.md`, `docs/RUNS.md` — **no rows today.** Nothing was downloaded
+and nothing was trained.
 
 Commit:
 

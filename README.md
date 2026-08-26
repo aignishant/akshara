@@ -88,23 +88,6 @@ The full set is [plan §2](docs/00_MASTER_PLAN.md) (twenty-one principles). The 
 - **Shapes are stated, never inferred.** More transformer bugs are shape bugs than algorithm bugs.
 - **Fail honestly.** A run that diverged is recorded as diverged, in `docs/RUNS.md`, with its seed.
 
-### 📄 Papers are taught, not cited
-
-**130 papers across 88 of the 162 days**, each getting its **own part** — not a footnote. You get the
-world before the paper, its equation read symbol by symbol, what its evidence does *and does not*
-support, and what later work corrected.
-
-And each paper part contains **the smallest end-to-end runnable project that implements that paper
-and nothing else** — one command, on your CPU, printing a result, with the **A/B** that switches the
-paper's idea off. Being able to strip an idea down to the smallest thing that still demonstrates it
-is the proof you understood what the paper actually added. It is *build first, compare after*
-applied to the literature instead of to libraries.
-
-This is the antidote to how this field actually misleads itself: half-remembered claims detached
-from their conditions. *"Temperature 0.7 is best." "Twenty tokens per parameter." "LoRA rank 16 is
-standard."* Every one is a real result, from a real paper, measured under conditions nobody
-restates.
-
 ### 💥 The five silent failures
 
 Ordinary software fails loudly. Generative systems fail *quietly* — they train, they run, they emit
@@ -140,8 +123,7 @@ Every day that touches one names it, and says how you would detect it.
 
 `./m check` is the whole-project gate and must be green before any day is finished. The depth check
 is not advisory: it fails a day for a missing `Shapes` table, an unexplained code block, a numbering
-gap, a paper part with no runnable project, a hub that carries teaching, or a smuggled-in time
-estimate.
+gap, a hub that carries teaching, or a smuggled-in time estimate.
 
 ---
 
@@ -150,8 +132,8 @@ estimate.
 ```
 akshara/        the model package — you write every line, from the day documents
 configs/        every run's config, committed. Weights are not.
-days/           the teaching: one folder per day, hub + parts/ (+ papers/ demos)
-docs/           the plan, the six ledgers, the generated ledgers, the ADRs
+days/           the teaching: one folder per day, hub + parts/
+docs/           the plan, the ledgers, the generated ledgers, the ADRs
 scripts/        depth_check.py · trace.py · tracker.py
 tests/          CPU-only, deterministic, offline
 notebooks/      Colab/Kaggle notebooks, output stripped before commit
@@ -165,7 +147,7 @@ Day 31.
 
 ## Ledgers
 
-Seven are written by hand and append-only; three are generated. Do not confuse them — editing a
+Six are written by hand and append-only; three are generated. Do not confuse them — editing a
 generated one just means the next `./m check` overwrites you.
 
 | Hand-written | What it records |
@@ -175,7 +157,6 @@ generated one just means the next `./m check` overwrites you.
 | `DATASETS.md` | every dataset **before** download: revision SHA, licence, decontamination status |
 | `MODELS.md` | every checkpoint **before** loading: revision SHA, licence, safetensors-only |
 | `RUNS.md` | every training run: seed, config hash, hardware, losses, outcome — **including failures** |
-| `PAPERS.md` | every paper taught: identifier resolved live, the part that teaches it, its demo path |
 | `CHANGELOG_PLAN.md` | every amendment to the plan |
 
 `RUNS.md` is the one an ordinary project does not have, and the one that will save you. Six weeks

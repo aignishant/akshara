@@ -3,7 +3,9 @@
 - **Date:** 2026-08-25
 - **Day:** 0 (pre-curriculum)
 - **Phase:** 0
-- **Status:** accepted
+- **Status:** **superseded by ADR-0006** (2026-08-26) — paper parts are removed and papers
+  return to being cited under Principle 8. The context and the rejected alternatives below are
+  kept as the record of why they were once adopted; the decision itself no longer holds.
 - **Amends:** master plan v1.0.0 → **v1.1.0**
 - **Establishes:** Principle 21 · §24.3 (the paper roster) · §25.10 (the paper-part contract)
 - **Related:** ADR-0002 (the depth contract)

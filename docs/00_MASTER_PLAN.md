@@ -1,18 +1,17 @@
 ---
 plan: akshara
-version: "v1.1.0"
+version: "v1.2.0"
 curricula: 17
 ids: 309
 days: 162
 phases: 22
 doc_architecture: "hub + parts/ (see §25)"
-paper_architecture: "one part per paper, in the day's own paper section (see §24.3, §25.10)"
 day_count_is: "derived, not chosen (see §24.0)"
 created: "2026-08-25"
-amended: "2026-08-25"
+amended: "2026-08-26"
 ---
 
-# 🔤 MASTER PLAN v1.1.0 — Project **Akshara**
+# 🔤 MASTER PLAN v1.2.0 — Project **Akshara**
 ## Generative AI from the byte up — tokenizers · transformers · training · alignment · diffusion · serving
 
 > **Akshara** (Sanskrit अक्षर) means two things at once: *the syllable* — the smallest indivisible
@@ -61,8 +60,8 @@ amended: "2026-08-25"
 | 21 | 🌫️ Curriculum GEN — Other Generative Families (GEN-01..21) |
 | 22 | 🛡️ Curriculum SAFE — Safety, Security & Ethics (SAFE-01..20) |
 | 23 | 🚀 Curriculum SERVE — Serving & Systems (SERVE-01..16) · OPS-01..10 |
-| 24 | 🗓️ The Day Map (day → IDs closed) · **§24.3 The Paper Roster** |
-| 25 | 📐 The Depth Contract — how a day is written · **§25.10 Paper parts** |
+| 24 | 🗓️ The Day Map (day → IDs closed) |
+| 25 | 📐 The Depth Contract — how a day is written |
 | 26 | 🚦 Phase Gates & the Freshness Check |
 | 27 | 📒 Ledgers & Traceability |
 | 28 | ✍️ The Style Guide |
@@ -159,15 +158,8 @@ Three commitments shape everything:
 20. **Shapes are stated, never inferred.** Any part that introduces or transforms a tensor carries a
     shape table (§25.4). More transformer bugs are shape bugs than are algorithm bugs, and a
     document that leaves the reader to guess `(B, T, C)` has taught them nothing they can debug.
-21. **A paper the field rests on is taught, not cited.** Where a day's concept comes from a specific
-    paper, that paper gets **its own part** — a full teaching document under the same contract as
-    every other part, in the day's own paper section (§24.3, §25.10). A citation in a footnote tells
-    the reader the idea has a source. A part tells them what the world looked like before it, what
-    it actually claimed, what evidence it offered, what later work corrected, and what survived into
-    the systems they will work on. **Naming a paper and moving on is the citation equivalent of an
-    unexplained line of code.**
 
-> Principles 8, 9, 12, 19, 20 and 21 are the ones this curriculum adds to ordinary engineering
+> Principles 8, 9, 12, 19 and 20 are the ones this curriculum adds to ordinary engineering
 > discipline, because generative work fails *quietly* (§6). They are made concrete by **§25, the
 > depth contract**, and enforced mechanically by `scripts/depth_check.py` (`./m depth N`).
 
@@ -934,14 +926,14 @@ Three consequences you should hold on to:
 > that blocks **artifacts** (checkpoints, datasets — the rule that makes this repo unlike a web
 > app), the `./m` driver, and the depth check. Day 1 makes that repo **Akshara's**: the layout as an
 > argument rather than a `mkdir`, the `.env` and Hugging Face token that block **secrets**, the
-> seven ledgers plus `trace.py`/`tracker.py`, and the free-compute accounts. `.gitignore` is touched
+> six ledgers plus `trace.py`/`tracker.py`, and the free-compute accounts. `.gitignore` is touched
 > on both days for two genuinely different reasons, and each day says which.
 
 #### Phase 1 — The ground (Days 1–8)
 
 | Day | Title | IDs closed |
 | --- | --- | --- |
-| 1 | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hugging Face token, the seven ledgers and `scripts/trace.py`, and the free-compute accounts | OPS-01, OPS-02, OPS-03, OPS-04 |
+| 1 | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hugging Face token, the six ledgers and `scripts/trace.py`, and the free-compute accounts | OPS-01, OPS-02, OPS-03, OPS-04 |
 | 2 | Tensors — shape, dtype, stride, device, broadcasting; the matmul that is 90% of everything you will run | MATH-01, MATH-02, MATH-03 |
 | 3 | Derivatives by hand — the chain rule as a graph, and a scalar autograd engine you write | MATH-04, MATH-05 |
 | 4 | Backprop through a layer — the transpose everyone gets wrong, proved by finite differences | MATH-06, MATH-07 |
@@ -1208,197 +1200,6 @@ Three consequences you should hold on to:
 
 ---
 
-### 24.3 The Paper Roster — which days rest on which papers
-
-**Principle 21: a paper the field rests on is taught, not cited.** Every paper below gets **its own
-part**, in its day's paper section, under the contract in §25.10.
-
-> ⚠️ **Papers are listed by title and year, never by identifier — on purpose.** Principle 8 forbids
-> writing a number from memory, and an arXiv id is a number. The id, the exact title and the venue
-> are **resolved live on the day the part is written**, and the row lands in `docs/PAPERS.md` before
-> a word of the part is written. A plan that shipped ninety remembered identifiers would be teaching
-> the opposite of what §25.10 exists to teach.
->
-> This roster is the **floor, not the ceiling.** A day may add a paper it turns out to need; adding
-> one is a `docs/PAPERS.md` row and a part, not an amendment. **Removing** one is an amendment,
-> because it changes what the curriculum claims to cover.
-
-Where a day's row says **"the day"**, the paper is not an appendix to the teaching — it *is* the
-day, and the paper parts span several sections (§25.10.1).
-
-#### Book I — Ground
-
-| Day | Paper (title, year) | Why this day |
-| --- | --- | --- |
-| 8 | *Adam: A Method for Stochastic Optimization* (2014) | The optimizer every run in this plan uses |
-| 12 | *Neural Machine Translation of Rare Words with Subword Units* (2015) | BPE — the algorithm you write by hand that day |
-| 15 | *Japanese and Korean Voice Search* (2012) | WordPiece, and the `##` convention |
-| 15 | *Subword Regularization* (2018) | The Unigram LM tokenizer — a *probabilistic* vocabulary |
-| 15 | *SentencePiece: A simple and language independent subword tokenizer* (2018) | The implementation everyone actually ships |
-| 19 | *Efficient Estimation of Word Representations in Vector Space* (2013) | word2vec — what "embedding" meant before contextual |
-| 19 | *GloVe: Global Vectors for Word Representation* (2014) | The counting-based alternative, and why it lost |
-| 21 | *How Contextual are Contextualized Word Representations?* (2019) | Anisotropy — why raw LM states disappoint as embeddings |
-
-#### Book II — The Machine
-
-| Day | Paper (title, year) | Why this day |
-| --- | --- | --- |
-| 26 | *A Neural Probabilistic Language Model* (2003) | The MLP language model you build that day, twenty years early |
-| 27 | *Long Short-Term Memory* (1997) | The gate that keeps a gradient alive |
-| 27 | *Learning Phrase Representations using RNN Encoder–Decoder* (2014) | GRU, and the encoder–decoder framing that outlived it |
-| 29 | *Neural Machine Translation by Jointly Learning to Align and Translate* (2014) | **Attention, before transformers** — the paper that invented the soft lookup |
-| 32 | *A Mathematical Framework for Transformer Circuits* (2021) | Induction heads — what a head specialises in, and how anyone knows |
-| 34 | *Efficient Streaming Language Models with Attention Sinks* (2023) | Attention sinks — the first token everything attends to |
-| 35 | *Gaussian Error Linear Units (GELUs)* (2016) | The activation that replaced ReLU in transformers |
-| 35 | *GLU Variants Improve Transformer* (2020) | SwiGLU, and the honest "we offer no explanation" in its conclusion |
-| 36 | *Deep Residual Learning for Image Recognition* (2015) | The residual connection, from the paper that made depth trainable |
-| 37 | *Layer Normalization* (2016) | What is normalized, over which axis |
-| 37 | *Root Mean Square Layer Normalization* (2019) | RMSNorm — the term that turned out not to matter |
-| 37 | *On Layer Normalization in the Transformer Architecture* (2020) | Pre-norm vs post-norm: the argument that moved the whole field |
-| 40 | *Attention Is All You Need* (2017) | **the day** — read end to end, against what people actually build now |
-| 42 | *Convolutional Sequence to Sequence Learning* (2017) | Learned positional embeddings, and where the idea came from |
-| 43 | *RoFormer: Enhanced Transformer with Rotary Position Embedding* (2021) | RoPE — the code you write that day |
-| 43 | *Train Short, Test Long: Attention with Linear Biases* (2021) | ALiBi's different bet on extrapolation |
-| 44 | *YaRN: Efficient Context Window Extension of Large Language Models* (2023) | Context extension, and what position interpolation costs |
-| 44 | *Longformer: The Long-Document Transformer* (2020) | Sliding-window and sparse attention patterns |
-| 45 | *BERT: Pre-training of Deep Bidirectional Transformers* (2018) | Encoder-only and masked language modelling |
-| 46 | *Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer* (2019) | T5, and the encoder–decoder case |
-| 47 | *Language Models are Unsupervised Multitask Learners* (2019) | GPT-2 — the argument for decoder-only |
-| 48 | *Fast Transformer Decoding: One Write-Head is All You Need* (2019) | MQA, and the KV cache that motivated it |
-| 48 | *GQA: Training Generalized Multi-Query Transformer Models* (2023) | The compromise everyone shipped |
-| 49 | *Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer* (2017) | MoE routing, before it was fashionable |
-| 49 | *Switch Transformers* (2021) | Load balancing, capacity factors, and the simplification that made MoE work |
-| 50 | 🅿️ *Mamba: Linear-Time Sequence Modeling with Selective State Spaces* (2023) | What selective state spaces actually claim |
-| 54 | *Understanding the difficulty of training deep feedforward neural networks* (2010) | Xavier/Glorot init — why scale matters |
-| 54 | *Delving Deep into Rectifiers* (2015) | He init, and the ReLU correction |
-| 57 | *Mixed Precision Training* (2017) | fp16, loss scaling, and the master weights |
-| 57 | *Training Deep Nets with Sublinear Memory Cost* (2016) | Gradient checkpointing — compute traded for memory |
-| 61 | *The Pile: An 800GB Dataset of Diverse Text* (2020) | What a pretraining corpus is actually made of |
-| 61 | *The RefinedWeb Dataset for Falcon LLM* (2023) | Filtering alone beats curation — the result that changed data practice |
-| 62 | *Deduplicating Training Data Makes Language Models Better* (2021) | Why dedup is not housekeeping |
-| 62 | *Documenting Large Webtext Corpora* (2021) | What is actually in a web corpus, including the benchmarks |
-| 65 | *Scaling Laws for Neural Language Models* (2020) | The power law, and the claim it made |
-| 65 | *Training Compute-Optimal Large Language Models* (2022) | Chinchilla — the correction, and the arithmetic you use to size Akshara |
-| 66 | 🅿️ *ZeRO: Memory Optimizations Toward Training Trillion Parameter Models* (2019) | The distributed arithmetic you must be able to do without running it |
-| 67 | 🅿️ *Tensor Programs V: Tuning Large Neural Networks via Zero-Shot Hyperparameter Transfer* (2022) | muP — tune small, run large |
-| 68 | *Emergent Abilities of Large Language Models* (2022) | The claim |
-| 68 | *Are Emergent Abilities of Large Language Models a Mirage?* (2023) | The rebuttal — read as a pair, which is the point |
-
-#### Book III — The Runtime
-
-| Day | Paper (title, year) | Why this day |
-| --- | --- | --- |
-| 70 | *On the Properties of Neural Machine Translation: Encoder–Decoder Approaches* (2014) | Beam search, and where it came from |
-| 71 | *The Curious Case of Neural Text Degeneration* (2019) | Nucleus sampling — and the best demonstration in the field of why likelihood is not quality |
-| 75 | *Efficiently Scaling Transformer Inference* (2022) | Prefill vs decode, and the latency arithmetic |
-| 76 | *Efficient Guided Generation for Large Language Models* (2023) | Finite-state constrained decoding |
-| 77 | 🅿️ *Fast Inference from Transformers via Speculative Decoding* (2022) | Draft-and-verify |
-| 77 | 🅿️ *Orca: A Distributed Serving System for Transformer-Based Generative Models* (2022) | Continuous batching — the idea that made serving cheap |
-| 79 | *LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale* (2022) | The outlier features that make naive int8 fail |
-| 80 | *GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers* (2022) | Calibration-based PTQ |
-| 80 | *AWQ: Activation-aware Weight Quantization* (2023) | The salient-weight argument |
-| 81 | *LoRA: Low-Rank Adaptation of Large Language Models* (2021) | The update you derive and build that day |
-| 82 | *QLoRA: Efficient Finetuning of Quantized LLMs* (2023) | NF4, double quantization, paged optimizers |
-| 82 | *Prefix-Tuning: Optimizing Continuous Prompts for Generation* (2021) | The PEFT alternative |
-| 82 | *The Power of Scale for Parameter-Efficient Prompt Tuning* (2021) | Prompt tuning, and when it catches up |
-| 83 | *FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness* (2022) | Exact, not approximate — the distinction everyone gets wrong |
-| 83 | *Efficient Memory Management for Large Language Model Serving with PagedAttention* (2023) | vLLM, and virtual memory for the KV cache |
-| 84 | *Distilling the Knowledge in a Neural Network* (2015) | Soft labels and the temperature |
-| 84 | *SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot* (2023) | Pruning at scale |
-| 84 | 🅿️ *The Lottery Ticket Hypothesis* (2018) | Why the sparsity result is more interesting than it looks |
-
-#### Book IV — The Behaviour
-
-| Day | Paper (title, year) | Why this day |
-| --- | --- | --- |
-| 87 | *Self-Instruct: Aligning Language Models with Self-Generated Instructions* (2022) | Where synthetic instruction data comes from |
-| 87 | *LIMA: Less Is More for Alignment* (2023) | Quality over quantity, with the evidence |
-| 91 | *Deep Reinforcement Learning from Human Preferences* (2017) | Pairwise comparison as the annotation primitive |
-| 92 | *Scaling Laws for Reward Model Overoptimization* (2022) | Reward hacking, measured |
-| 93 | *Proximal Policy Optimization Algorithms* (2017) | The optimizer inside RLHF |
-| 93 | *Training language models to follow instructions with human feedback* (2022) | InstructGPT — the four-model pipeline, end to end |
-| 94 | *Direct Preference Optimization: Your Language Model is Secretly a Reward Model* (2023) | The derivation you work through that day |
-| 94 | *ORPO: Monolithic Preference Optimization without Reference Model* (2024) | What it removes |
-| 94 | *KTO: Model Alignment as Prospect Theoretic Optimization* (2024) | Unpaired preference data |
-| 94 | *SimPO: Simple Preference Optimization with a Reference-Free Reward* (2024) | The length-bias correction |
-| 95 | 🅿️ *Constitutional AI: Harmlessness from AI Feedback* (2022) | RLAIF |
-| 95 | *DeepSeekMath: Pushing the Limits of Mathematical Reasoning* (2024) | GRPO, and RL on verifiable rewards |
-| 96 | *An Empirical Study of Catastrophic Forgetting in Large Language Models* (2023) | The alignment tax, measured rather than asserted |
-| 97 | *Language Models are Few-Shot Learners* (2020) | GPT-3 — in-context learning as a phenomenon |
-| 97 | *In-context Learning and Induction Heads* (2022) | The mechanism underneath it |
-| 99 | *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models* (2022) | Why generating steps helps a next-token predictor |
-| 99 | *Language Models Don't Always Say What They Think* (2023) | Faithfulness — the paper that should make you cautious about CoT |
-| 100 | *Self-Consistency Improves Chain of Thought Reasoning* (2022) | Majority vote over samples |
-| 101 | *Scaling LLM Test-Time Compute Optimally* (2024) | Test-time compute as a scaling axis |
-| 102 | *Let's Verify Step by Step* (2023) | Process rewards vs outcome rewards |
-| 103 | *Lost in the Middle: How Language Models Use Long Contexts* (2023) | Position bias, with the U-shaped curve |
-| 104 | *Extracting Training Data from Large Language Models* (2020) | What parametric knowledge actually stores |
-| 105 | *Dense Passage Retrieval for Open-Domain Question Answering* (2020) | The bi-encoder, and hard negatives |
-| 105 | *Sentence-BERT* (2019) | Why an LM's hidden state is not a sentence embedding |
-| 107 | *Efficient and robust approximate nearest neighbor search using HNSW graphs* (2016) | The index everything uses |
-| 108 | *ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction* (2020) | Late interaction, between bi- and cross-encoder |
-| 109 | *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* (2020) | The paper the acronym comes from — and how different it is from what people call RAG |
-| 110 | *RAGAS: Automated Evaluation of Retrieval Augmented Generation* (2023) | Separating retrieval metrics from answer metrics |
-| 113 | *Perplexity — a measure of the difficulty of speech recognition tasks* (1977) | Where the metric came from, and what it assumed |
-| 114 | *Measuring Massive Multitask Language Understanding* (2020) | MMLU — what it does and does not measure |
-| 114 | *Training Verifiers to Solve Math Word Problems* (2021) | GSM8K |
-| 114 | *Evaluating Large Language Models Trained on Code* (2021) | HumanEval, and pass@k |
-| 115 | *BLEU: a Method for Automatic Evaluation of Machine Translation* (2002) | The metric everyone still reports and nobody trusts |
-| 115 | *BERTScore: Evaluating Text Generation with BERT* (2019) | Model-based metrics |
-| 116 | *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena* (2023) | The judge, and its measured biases |
-| 119 | *On Calibration of Modern Neural Networks* (2017) | Why confidence stopped meaning anything |
-| 141 | *Universal and Transferable Adversarial Attacks on Aligned Language Models* (2023) | GCG — jailbreaks as optimization, not wordplay |
-| 143 | *Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection* (2023) | The indirect-injection threat model |
-| 144 | *Quantifying Memorization Across Neural Language Models* (2022) | How much a model memorises, as a function of what |
-| 144 | *Membership Inference Attacks Against Machine Learning Models* (2016) | The original attack |
-| 145 | *Poisoning Web-Scale Training Datasets is Practical* (2023) | Why the supply chain is a real threat and not a hypothetical |
-| 146 | *On the Dangers of Stochastic Parrots* (2021) | The critique the field argued about, read rather than summarised |
-| 146 | *BBQ: A Hand-Built Bias Benchmark for Question Answering* (2022) | Measuring bias rather than deploring it |
-| 148 | *A Watermark for Large Language Models* (2023) | Watermarking, and its fragility |
-| 149 | *Model Cards for Model Reporting* (2018) | The artifact you write that day |
-
-#### Book V — Beyond text
-
-| Day | Paper (title, year) | Why this day |
-| --- | --- | --- |
-| 121 | *An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale* (2020) | ViT — the patch embedding you build |
-| 122 | *Learning Transferable Visual Models From Natural Language Supervision* (2021) | CLIP, InfoNCE, and the shared space |
-| 123 | *Visual Instruction Tuning* (2023) | LLaVA — the projector, and the two-stage recipe |
-| 123 | *Flamingo: a Visual Language Model for Few-Shot Learning* (2022) | The other way to bridge modalities |
-| 124 | *Robust Speech Recognition via Large-Scale Weak Supervision* (2022) | Whisper, and its hallucination on silence |
-| 125 | *High Fidelity Neural Audio Compression* (2022) | EnCodec — discrete audio tokens |
-| 128 | *Evaluating Object Hallucination in Large Vision-Language Models* (2023) | Multimodal grounding failure, measured |
-| 130 | *Auto-Encoding Variational Bayes* (2013) | The VAE, the ELBO, the reparameterization trick |
-| 131 | 🅿️ *Generative Adversarial Networks* (2014) | The adversarial game |
-| 133 | *Denoising Diffusion Probabilistic Models* (2020) | **the centre of the diffusion phase** — the objective that is just a regression |
-| 133 | *Deep Unsupervised Learning using Nonequilibrium Thermodynamics* (2015) | The original diffusion paper, five years early and ignored |
-| 135 | *Denoising Diffusion Implicit Models* (2020) | DDIM — deterministic sampling, fewer steps |
-| 136 | *Diffusion Models Beat GANs on Image Synthesis* (2021) | Classifier guidance |
-| 136 | *Classifier-Free Diffusion Guidance* (2022) | The dial everyone turns too far |
-| 137 | *High-Resolution Image Synthesis with Latent Diffusion Models* (2021) | The VAE compressor that made it affordable |
-| 138 | *Adding Conditional Control to Text-to-Image Diffusion Models* (2023) | ControlNet |
-| 138 | *DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation* (2022) | Personalization, and its failure modes |
-| 139 | *Flow Matching for Generative Modeling* (2022) | What replaced DDPM, and why it is simpler |
-| 140 | *GANs Trained by a Two Time-Scale Update Rule Converge to a Local Nash Equilibrium* (2017) | FID — the metric, and what it is blind to |
-
-#### 24.3.1 The count, and what it means for a day
-
-**130 papers across 88 of the 162 days.** Most paper-carrying days carry one or two; Day 40 is a
-paper end to end, and Days 15, 43, 94 and 114 carry three or more because those ideas only make
-sense against each other. Seventy-four days carry none.
-
-This is the single largest addition to the length of the curriculum, and it is the one most worth
-paying for (§25.10.4). A day with two paper parts is not a day with two extra pages of citation —
-it is a day where the reader learns the argument, the evidence, and what the evidence does not
-support, which is the difference between knowing a result and being able to use one.
-
-**Days with no papers are normal and are not a defect.** Day 0 is a toolchain. Day 53 is padding and
-attention masks — a mechanism the field never wrote a paper about, and one that costs more engineers
-more days than most of the papers above. `papers: []` in a hub is an explicit statement that the day
-was checked, not that it was skipped.
-
----
-
 ## 25 · 📐 The Depth Contract — how a day is written
 
 > **Why this section exists.** The default failure mode of a technical curriculum is a long page per
@@ -1450,8 +1251,6 @@ days/day-NNN-<day-slug>/
 │   │   └── 2.1-<slug>.md
 │   └── 03-<slug>/
 │       └── 3.1-<slug>.md
-├── papers/            # one directory per paper the day teaches — the small projects (§25.10)
-│   └── <paper-slug>/  #   demo.py + README.md; absent when the day rests on no papers
 └── lab/               # created by ./m scaffold NNN; the learner's own scratch code
 ```
 
@@ -1553,9 +1352,8 @@ The hub is **orientation and assembly, never the teaching itself**. It carries n
 walkthrough and no `Shapes` table — those live in the parts. Required, in this order:
 
 1. **frontmatter** — `day`, `phase`, `phase_name`, `title`, `ids`, `principles`, `kind`,
-   `plan_version`, `parts` (the count), `papers` (the list, from §24.3 — **`papers: []` when the day
-   rests on none**; an empty list is a decision, a missing key is an oversight), `compute_tier`,
-   `generated`, `status`, `lab_scaffolded`, `commit`.
+   `plan_version`, `parts` (the count), `compute_tier`, `generated`, `status`, `lab_scaffolded`,
+   `commit`.
 2. **yesterday / today / tomorrow** — one line each, as a blockquote. No time estimate.
 3. **`## §1 Where we are`** — the day's whole idea as a scene and an analogy, in plain language,
    before any code and before any jargon.
@@ -1663,16 +1461,6 @@ It fails on:
   "quick detour", a suggested pace;
 - a hub that carries teaching, or whose §2 map does not link every part on disk;
 - a `parts:` frontmatter count that disagrees with the directory;
-- a hub with no `papers:` frontmatter key (`papers: []` is the answer when a day rests on none —
-  an empty list is an explicit decision, a missing key is an oversight);
-- a hub declaring N papers whose `parts/` holds a different number of `kind: paper` parts (§25.10.3
-  rule 1: one paper, one part);
-- a `kind: paper` part missing `paper_title`, `paper_year`, or an identifier
-  (`paper_arxiv` or `paper_venue`);
-- a `kind: paper` part missing `## The paper in one small project`, `## What the paper showed` or
-  `## What came after`, or carrying them out of contract order (§25.10.2);
-- a `## The paper in one small project` section containing no code block — a project you cannot run
-  is a description (§25.10.2);
 - a missing `CHECKLIST.md`.
 
 What it **cannot** check is whether an explanation is any good. That is what §25.8 is for, and it is
@@ -1681,151 +1469,6 @@ visible from the progress table alone.
 
 `scripts/trace.py` is the ID-level check: it reads each `days/day-NNN-<slug>/LESSON.md` against §24
 and regenerates `docs/TRACEABILITY.md`. **An open ID in a completed phase is a bug.**
-
-### 25.10 Paper parts — how a paper is taught
-
-**Principle 21: a paper the field rests on is taught, not cited.**
-
-Roughly ninety days in this plan rest on a specific published result (§24.3). The tempting way to
-handle that is a citation — *"scaled dot-product attention (arXiv:1706.03762)"* — and it is the
-citation equivalent of an unexplained line of code. It tells the reader the idea has a source and
-teaches them nothing about it. Meanwhile "read the paper" is advice nobody acts on, because the
-reader has no idea which parts of a nine-page PDF matter or what the notation means.
-
-So: **a paper gets a part.**
-
-#### 25.10.1 Where paper parts live
-
-A day that rests on one or more papers carries a **dedicated section, last in the day**, holding
-**one part per paper**:
-
-```
-days/day-043-rope-and-alibi/
-├── parts/
-│   ├── 01-position-by-rotation/     # the teaching: RoPE, in your own words and code
-│   ├── 02-alibis-different-bet/     # the teaching: ALiBi
-│   └── 03-the-papers/               # ⟵ the paper section, one part per paper
-│       ├── 3.1-roformer-rope.md
-│       └── 3.2-train-short-test-long-alibi.md
-```
-
-The section comes **last on purpose.** The mechanism is taught first, in plain language and running
-code, so that when the reader opens the paper they already understand the idea and are reading for
-*how it was argued and what it cost* — which is the skill this section is actually building. A
-reader sent to the paper first learns to be intimidated by papers.
-
-The section is named `NN-the-papers/` (or `NN-the-paper/` when there is one). Where a whole day *is*
-a paper — Day 40, reading the original transformer paper — the paper parts are the day, spread over
-several sections, and §25.10.2 still governs each one.
-
-Each paper part's small project (§25.10.2 section 9) lives in the day's own `papers/` directory,
-one subdirectory per paper — a **sibling of `lab/`, not inside it**. `lab/` is the learner's scratch
-space and is theirs to make a mess of; `papers/` holds finished, runnable demonstrations that are
-part of the day's teaching and are referenced from a part:
-
-```
-days/day-043-rope-and-alibi/
-├── LESSON.md
-├── CHECKLIST.md
-├── parts/
-│   └── 03-the-papers/
-│       ├── 3.1-roformer-rope.md
-│       └── 3.2-train-short-test-long-alibi.md
-├── papers/                      ⟵ one directory per paper, named for its slug
-│   ├── roformer-rope/
-│   │   ├── demo.py              # runs on CPU, one command, prints a number
-│   │   └── README.md            # what it shows, what it does NOT show
-│   └── alibi/
-│       ├── demo.py
-│       └── README.md
-└── lab/                         # the learner's own scratch code — separate on purpose
-```
-
-The part at `parts/03-the-papers/3.1-roformer-rope.md` prints `papers/roformer-rope/demo.py` in full
-and links to it. **The path is `<day>/papers/<paper-slug>/`**, so a reader who wants to run every
-demonstration in the curriculum can find them all with one glob, without wading through scratch code.
-
-The project is printed in full in the part, with its `Line by line` walkthrough, and typed by the
-learner like every other line of code in this curriculum.
-
-#### 25.10.2 What a paper part must contain
-
-A paper part carries the **nine unconditional sections of §25.4**, plus `Shapes` and `Line by line`
-under the same conditions, plus **three more that are unconditional for paper parts**. The order:
-
-| # | Section | The rule, for a paper |
-| --- | --- | --- |
-| 1 | **frontmatter** | as §25.4, plus `kind: paper`, `paper_title`, `paper_arxiv` (or `paper_venue` where there is no arXiv id), `paper_year`. |
-| 2 | **One-line answer** | What the paper *claimed*, in one sentence, in your own words. |
-| 3 | **The story** | **The world before the paper.** What people were actually doing, what it cost them, and the specific frustration this paper was a response to. No jargon, and no hindsight — the story is told from inside the year it was written. |
-| 4 | **The idea in plain language** | The paper's core idea with no math and no notation. If you cannot state it without an equation, you have not finished reading it. |
-| 5 | **Why Akshara needs it** | The line of your own code that is this paper. *"`apply_rope()` in `akshara/model/position.py` is §3.4.2 of this paper"* is the shape. |
-| 6 | **The mechanism** | The paper's actual contribution: the equation, the algorithm box, the architecture figure — **reproduced and then read symbol by symbol.** Every symbol in every equation is named, with its shape where it has one. This is `Line by line`, applied to mathematics: **an unexplained symbol is a bug in the doc.** |
-| 7 | **Shapes** *(conditional)* | As §25.4. Papers use their own notation; the table maps the paper's symbols onto the curriculum's (`B`, `T`, `C`, `H`, `hs`, `V`) so the reader can move between the paper and their own code without re-deriving anything. |
-| 8 | **Line by line** *(conditional)* | As §25.4, for any code block. |
-| 9 | **The paper in one small project** ⟵ *paper-specific* | **The smallest end-to-end runnable project that implements the paper's contribution and nothing else.** Not a snippet — a project: it starts from nothing, runs with one command, and prints a result. And it is *only* the paper: no surrounding model, no other features, no scaffolding the paper did not introduce. **The isolation is the pedagogy** — being able to strip an idea down to the smallest thing that still demonstrates it is the proof you understood what the paper actually added, and it is the single hardest part of writing one of these. It must run at **T0** (laptop CPU, seconds to a couple of minutes) on synthetic or tiny data. It must include the **A/B**: the same project with the paper's idea switched off, because a demo that only shows *it runs* demonstrates nothing — **the ablation is the demo.** It ends by stating what it does **not** show: the claims that only appear at scale. |
-| 10 | **What the paper showed** ⟵ *paper-specific* | The evidence, **cited to the table or section it came from** — "Table 3", "§5.2" — with the numbers **as reported** (Principle 8: these are cited, not measured, and the part says so). Then the honest part: **what the evidence does and does not support.** Ablations that were not run, baselines that were not tuned, the single seed, the benchmark that was already saturating. This section is where a reader learns to read a results table like a reviewer rather than like an audience. |
-| 11 | **When it breaks** | As §25.4: where this idea fails in practice, with the real error or the real wrong output. |
-| 12 | **What came after** ⟵ *paper-specific* | The paper's afterlife. What was corrected, superseded, or failed to reproduce; what the community quietly stopped doing; which follow-up paper is the one people actually implement now. **A paper taught as though it were the final word is taught wrong** — this section is why the reader will not be defending a 2017 default in 2027. |
-| 13 | **In production** | What survived into real systems, what everybody changed, and the thing the paper recommends that nobody does. Plus the interview question — for papers, usually *"why is it √d_k and not d_k?"*-shaped: a question you can only answer if you read the argument rather than the abstract. |
-| 14 | **Check yourself** | As §25.4 — one command that prints a number — **plus one instruction that sends the reader into the paper itself**: *"read §3.2.1 and say, out loud, what breaks if the scaling is removed."* The reader must open the PDF at least once per paper part. |
-
-#### 25.10.3 The rules around paper parts
-
-1. **One paper, one part.** Two papers in a day is two parts. If a part needs "and also, the ALiBi
-   paper" it is two parts — the one-idea test (§25.4) applies unchanged.
-2. **Resolve the identifier live, never from memory** (Principle 8). The arXiv id, the year, the
-   exact title and the venue are looked up on the day the part is written, and the row lands in
-   `docs/PAPERS.md` **before** the part is written. **§24.3 deliberately lists papers by title and
-   year rather than by id**, precisely so that no id in this plan is a remembered one.
-3. **Quote numbers as reported, and label them.** A number from a paper is a *citation*, not a
-   measurement, and the part says which: `[reported: Table 3]` versus `[measured here: T4, seed
-   1337, 2026-08-25]`. Mixing the two is how a curriculum starts lying to itself.
-4. **Read the actual paper.** A paper part written from an abstract, a blog summary, or memory is
-   worse than no paper part, because it launders unreliability through the appearance of a citation.
-   The hub's §8 records the URL fetched and the date.
-5. **Say what you skipped.** Papers have sections that do not matter for this curriculum. The part
-   says so — *"§6 is a machine-translation evaluation you can skip"* — because a reader who thinks
-   they must understand all nine pages will not open page one.
-6. **A parked 🅿️ concept still gets its paper part** — *including its small project*. You are not
-   building a Mamba, and you can still build a fifty-line selective scan on a toy sequence and watch
-   it do the thing the paper claims. 🅿️ means "not built into Akshara", never "not built at all".
-7. **The small project lives at `days/day-NNN-<slug>/papers/<paper-slug>/`** — the day's own
-   `papers/` directory, a **sibling of `lab/`, never inside it**. `lab/` is scratch space the learner
-   owns and may leave in any state; `papers/` holds finished demonstrations that a part references
-   and that anyone should be able to run. Each holds `demo.py` and a `README.md` saying what it shows
-   and what it does not. It is printed in full in the part with its `Line by line` walkthrough, and
-   the learner types it, like all other code in this curriculum.
-8. **The small project must be honest about its scale.** It will not reproduce the paper — a 500-step
-   run on synthetic data never does. It reproduces the *mechanism* and the *direction* of the
-   paper's effect. The part says which, in words, and the `What the paper showed` section that
-   follows is where your number and their number get compared out loud. **A demo presented as a
-   reproduction is Silent Failure #4 wearing a lab coat.**
-9. **If you cannot isolate it, you have not understood it.** A paper whose small project keeps
-   dragging in the rest of the transformer is a signal to re-read, not a signal to write a bigger
-   demo. The one genuine exception is a paper whose contribution *is* a system-level property
-   (continuous batching, FSDP); there the project simulates the mechanism — a queue of fake
-   requests, a fake device mesh — and says so.
-
-#### 25.10.4 Why this is worth the length
-
-Three reasons, and the third is the real one.
-
-- **It is where the field's reasoning lives.** The plan teaches you *that* attention scales by √d_k.
-  The paper part is where you learn *why the variance argument leads there*, which is what lets you
-  reason about the next architecture rather than memorise this one.
-- **It is a transferable skill.** After ninety paper parts, a reader can open an unfamiliar paper,
-  find the contribution, find the evidence, and find what the evidence does not support. That skill
-  outlives every specific result in this plan.
-- **The small project is where "I read it" becomes "I can build it".** A paper you have re-implemented
-  in fifty lines, with the ablation showing the effect appear and disappear, is a paper you can
-  argue about. One you have only read is a paper you can quote. This is Principle 3 —
-  build first, compare after — applied to the literature rather than to libraries.
-- **It is the antidote to the field's actual failure mode.** Generative AI runs on half-remembered
-  claims — "temperature 0.7 is best", "you need 20 tokens per parameter", "LoRA rank 16 is
-  standard". Every one of those is a real result, from a real paper, under conditions nobody
-  restates. **Principle 8 says never invent a number; §25.10 is how the curriculum earns the right
-  to say that**, by teaching where numbers come from and what they were measured on.
 
 ---
 
@@ -1869,16 +1512,15 @@ All ledgers live in `docs/`.
 | `docs/DATASETS.md` | Append-only | Every dataset **before** it is downloaded: name, source URL, revision SHA, licence, size, day, and whether it has been decontaminated against the eval sets. |
 | `docs/MODELS.md` | Append-only | Every pretrained checkpoint **before** it is loaded: repo, revision SHA, licence, format (safetensors only — Principle 13), size, day, why. |
 | `docs/RUNS.md` | Append-only | Every training run: run id, day, config path, config hash, seed, hardware, steps, tokens seen, final train/val loss, wall time, checkpoint location, outcome (**including "diverged"** — Principle 10). |
-| `docs/PAPERS.md` | Append-only | Every paper taught: title, year, **identifier resolved live** (arXiv id or venue), the day and part that teaches it, the URL fetched and the date it was fetched. Written **before** the paper part is (Principle 8, §25.10.3). |
 | `docs/CHANGELOG_PLAN.md` | Append-only | Every amendment to this plan (Principle 14). |
 | `docs/TRACEABILITY.md` | Regenerated | `scripts/trace.py` scans every day hub against §24; an open ID in a completed phase is a bug. |
 | `docs/TRACKER.md` | Regenerated | `scripts/tracker.py` reports what is written, **how many parts each day has**, and what is pending. A thin day is visible from this table alone. |
 | `docs/CURRICULUM_INDEX.md` | Regenerated | The ID → day cross-table read out of §24. Answers *"where do I learn `ARCH-28`?"* |
 
-**Three ledgers are regenerated and seven are written by hand — do not confuse them.**
+**Three ledgers are regenerated and six are written by hand — do not confuse them.**
 `TRACEABILITY.md`, `TRACKER.md` and `CURRICULUM_INDEX.md` are outputs; editing them by hand only
 means the next `./m check` silently overwrites you. `PROGRESS.md`, `PACKAGES.md`, `DATASETS.md`,
-`MODELS.md`, `RUNS.md`, `PAPERS.md` and `CHANGELOG_PLAN.md` are append-only history, written by the
+`MODELS.md`, `RUNS.md` and `CHANGELOG_PLAN.md` are append-only history, written by the
 day you are finishing — every day document ends with the exact rows to paste (§25.5).
 
 > **`RUNS.md` is the ledger this curriculum has that an ordinary project does not**, and it is the
@@ -1980,5 +1622,6 @@ For failures and motivations, use the four-beat scene:
 
 | Version | Change |
 | --- | --- |
+| **v1.2.0** | **Paper parts are removed.** Reverses v1.1.0: deletes Principle 21, §24.3 (the paper roster), §25.10 (the paper-part contract), the `papers:` hub frontmatter key and the `docs/PAPERS.md` ledger. Papers return to being **cited** under Principle 8 — by arXiv id and section, resolved live, never from memory — which was the v1.0.0 position. No curriculum ID, day boundary, phase, gate or compute policy changed; `ARCH-25` (Day 40, reading the 2017 architecture as a 🔍 compare) is unaffected. See ADR-0006, which supersedes ADR-0005. |
 | **v1.1.0** | **Papers become teaching, not citations.** Adds Principle 21, §24.3 (the paper roster — 130 papers across 88 days, listed by title and year so that no identifier in this plan is a remembered one), §25.10 (the paper-part contract: one part per paper, in the day's own paper section, carrying two extra unconditional sections — *What the paper showed* and *What came after*), the `papers:` hub frontmatter key, and the `docs/PAPERS.md` ledger. No curriculum ID, day boundary, phase, gate or compute policy changed. See ADR-0005. |
 | **v1.0.0** | Initial plan. 17 curricula, 309 IDs, 162 days, 22 phases. Establishes the twenty principles (§2), the five silent failures (§6), the hub + `parts/` documentation architecture with the eleven-section part contract including the mandatory **Shapes** table (§25), the three-tier $0 compute policy (§4), and the six hand-written / three generated ledgers including `RUNS.md` (§27). |

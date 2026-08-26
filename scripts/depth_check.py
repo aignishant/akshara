@@ -38,22 +38,6 @@ SHAPES_SECTION = "Shapes"
 SHAPES_AFTER = "The mechanism"
 SHAPES_BEFORE = "When it breaks"
 
-#: A `kind: paper` part carries two more unconditional sections (§25.10.2, Principle 21).
-#: `What the paper showed` sits before `When it breaks`; `What came after` sits between
-#: `When it breaks` and `In production`.
-PAPER_SECTIONS: tuple[tuple[str, str, str], ...] = (
-    # (section, must come after, must come before)
-    ("The paper in one small project", "The mechanism", "What the paper showed"),
-    ("What the paper showed", "The mechanism", "When it breaks"),
-    ("What came after", "When it breaks", "In production"),
-)
-
-#: The small project must actually be a project (§25.10.2 section 9). A section with no code block
-#: in it is a description of a demo, which is what this rule exists to prevent.
-PAPER_PROJECT_SECTION = "The paper in one small project"
-PAPER_FRONTMATTER = ("paper_title", "paper_year")
-PAPER_IDENTIFIERS = ("paper_arxiv", "paper_venue")
-
 LEVELS = frozenset({"foundation", "working", "production"})
 
 #: Reader-directed pace and duration phrasing (§25.9, Principle 17).
@@ -132,7 +116,6 @@ class Report:
     failures: list[str] = field(default_factory=list)
     days_checked: int = 0
     parts_checked: int = 0
-    paper_parts_checked: int = 0
 
     def fail(self, where: Path | str, message: str) -> None:
         rel = where.relative_to(ROOT) if isinstance(where, Path) else where
@@ -176,19 +159,6 @@ def iter_code_blocks(body: str) -> list[tuple[str, int, int]]:
     return blocks
 
 
-def section_body(body: str, heading: str) -> str:
-    """Return the text under one H2 heading, up to the next H2 (or end of file)."""
-    m = re.search(rf"^##\s+{re.escape(heading)}\s*$", body, re.MULTILINE)
-    if not m:
-        return ""
-    nxt = re.search(r"^##\s+", body[m.end() :], re.MULTILINE)
-    return body[m.end() : m.end() + nxt.start()] if nxt else body[m.end() :]
-
-
-def section_has_code(body: str, heading: str) -> bool:
-    return "```" in section_body(body, heading)
-
-
 def h2_headings(body: str) -> list[str]:
     return [m.group(1).strip() for m in re.finditer(r"^##\s+(.+?)\s*$", body, re.MULTILINE)]
 
@@ -223,33 +193,8 @@ def check_clocks(path: Path, text: str, rep: Report) -> None:
 # --- part checks ---------------------------------------------------------------------------
 
 
-def frontmatter_list(fm: str, key: str) -> list[str] | None:
-    """Read a YAML list in either inline (`k: ["a", "b"]`) or block (`k:\\n  - a`) form.
-
-    Returns None when the key is absent, [] when it is present and empty. That distinction is
-    the point for `papers:` — an empty list is a decision, a missing key is an oversight (§25.5).
-    """
-    m = re.search(rf"^{re.escape(key)}\s*:\s*(.*)$", fm, re.MULTILINE)
-    if not m:
-        return None
-    inline = m.group(1).strip()
-    if inline.startswith("["):
-        return re.findall(r"['\"]([^'\"]+)['\"]", inline) or (
-            [] if inline.replace(" ", "") == "[]" else [inline]
-        )
-    if inline:
-        return [inline.strip("\"'")]
-    items: list[str] = []
-    for line in fm[m.end() :].splitlines():
-        if re.match(r"^\s*-\s+", line):
-            items.append(re.sub(r"^\s*-\s+", "", line).strip().strip("\"'"))
-        elif line.strip() and not line.startswith((" ", "\t")):
-            break
-    return items
-
-
-def check_part(path: Path, section_no: int, rep: Report) -> bool:
-    """Check one part. Returns True when it is a `kind: paper` part."""
+def check_part(path: Path, section_no: int, rep: Report) -> None:
+    """Check one part against the §25.4 contract."""
     text = path.read_text(encoding="utf-8")
     fm, body = split_frontmatter(text)
     rep.parts_checked += 1
@@ -258,9 +203,7 @@ def check_part(path: Path, section_no: int, rep: Report) -> bool:
 
     if not fm:
         rep.fail(path, "no YAML frontmatter (§25.4 section 1)")
-        return False
-
-    is_paper = (frontmatter_value(fm, "kind") or "").lower() == "paper"
+        return
 
     for key in ("day", "part", "title", "ids", "level", "prerequisites", "prev", "next"):
         if frontmatter_value(fm, key) is None:
@@ -318,48 +261,11 @@ def check_part(path: Path, section_no: int, rep: Report) -> bool:
         if SHAPES_BEFORE in order and order[SHAPES_SECTION] > order[SHAPES_BEFORE]:
             rep.fail(path, f"`## {SHAPES_SECTION}` must come before `## {SHAPES_BEFORE}` (§25.4)")
 
-    # --- a paper part carries two more unconditional sections (§25.10.2, Principle 21)
-    if is_paper:
-        for key in PAPER_FRONTMATTER:
-            if frontmatter_value(fm, key) is None:
-                rep.fail(path, f"a `kind: paper` part must declare `{key}` (§25.10.2)")
-        if not any(frontmatter_value(fm, k) for k in PAPER_IDENTIFIERS):
-            rep.fail(
-                path,
-                "a `kind: paper` part must declare `paper_arxiv` or `paper_venue` — resolved live, "
-                "never from memory (§25.10.3 rule 2 · Principle 8)",
-            )
-        for section, after, before in PAPER_SECTIONS:
-            if section not in headings:
-                rep.fail(path, f"a `kind: paper` part is missing `## {section}` (§25.10.2)")
-                continue
-            if after in order and order[section] < order[after]:
-                rep.fail(path, f"`## {section}` must come after `## {after}` (§25.10.2)")
-            if before in order and order[section] > order[before]:
-                rep.fail(path, f"`## {section}` must come before `## {before}` (§25.10.2)")
-
-        if PAPER_PROJECT_SECTION in headings and not section_has_code(body, PAPER_PROJECT_SECTION):
-            rep.fail(
-                path,
-                f"`## {PAPER_PROJECT_SECTION}` contains no code block — a project you cannot run is "
-                "a description (§25.10.2 section 9)",
-            )
-    else:
-        for section, _, _ in PAPER_SECTIONS:
-            if section in headings:
-                rep.fail(
-                    path,
-                    f"carries `## {section}` but is not declared `kind: paper` in its frontmatter "
-                    "(§25.10.2)",
-                )
-
-    return is_paper
-
 
 # --- hub checks ----------------------------------------------------------------------------
 
 
-def check_hub(hub: Path, part_paths: list[str], paper_parts: int, rep: Report) -> None:
+def check_hub(hub: Path, part_paths: list[str], rep: Report) -> None:
     text = hub.read_text(encoding="utf-8")
     fm, body = split_frontmatter(text)
 
@@ -391,22 +297,6 @@ def check_hub(hub: Path, part_paths: list[str], paper_parts: int, rep: Report) -
         rep.fail(
             hub,
             f"frontmatter says parts: {declared} but {len(part_paths)} part file(s) are on disk (§25.9)",
-        )
-
-    # `papers:` is required, and `papers: []` is the answer when a day rests on none — an empty
-    # list is a decision, a missing key is an oversight (§25.5 · Principle 21).
-    papers = frontmatter_list(fm, "papers")
-    if papers is None:
-        rep.fail(
-            hub,
-            "frontmatter is missing `papers` — use `papers: []` when the day rests on none. "
-            "An empty list is a decision; a missing key is an oversight (§25.5 · Principle 21)",
-        )
-    elif len(papers) != paper_parts:
-        rep.fail(
-            hub,
-            f"frontmatter declares {len(papers)} paper(s) but {paper_parts} `kind: paper` part(s) "
-            "are on disk — one paper, one part (§25.10.3 rule 1)",
         )
 
     for n in range(1, 12):
@@ -465,7 +355,6 @@ def check_day(day_dir: Path, rep: Report) -> None:
 
     seen_sections: list[int] = []
     part_rel_paths: list[str] = []
-    paper_parts = 0
 
     for sec in section_dirs:
         m = SECTION_DIRNAME.match(sec.name)
@@ -498,9 +387,7 @@ def check_day(day_dir: Path, rep: Report) -> None:
                 continue
             subtopics.append(file_sub)
             part_rel_paths.append(f"parts/{sec.name}/{f.name}")
-            if check_part(f, sec_no, rep):
-                paper_parts += 1
-                rep.paper_parts_checked += 1
+            check_part(f, sec_no, rep)
 
         subtopics.sort()
         if subtopics and subtopics != list(range(1, len(subtopics) + 1)):
@@ -516,7 +403,7 @@ def check_day(day_dir: Path, rep: Report) -> None:
         )
 
     if hub.exists():
-        check_hub(hub, part_rel_paths, paper_parts, rep)
+        check_hub(hub, part_rel_paths, rep)
 
 
 # --- entry point ---------------------------------------------------------------------------
@@ -566,8 +453,7 @@ def main(argv: list[str]) -> int:
         return 1
 
     print(
-        f"depth: OK — {rep.days_checked} day(s), {rep.parts_checked} part(s), "
-        f"{rep.paper_parts_checked} paper part(s), contract green"
+        f"depth: OK — {rep.days_checked} day(s), {rep.parts_checked} part(s), contract green"
     )
     return 0
 
