@@ -3,7 +3,7 @@
 _Generated 2026-08-26 by `scripts/trace.py` from the master plan's §24 and the day hubs._
 **Do not edit by hand** — the next `./m check` overwrites it.
 
-**4 / 309 IDs closed** across 2 written day(s) of 162 planned.
+**16 / 309 IDs closed** across 7 written day(s) of 162 planned.
 
 An ID is *closed* when the day the plan assigns it exists on disk and its hub claims it.
 **An open ID in a fully written phase is a bug** (plan §26).
@@ -17,7 +17,7 @@ Every written day claims exactly the IDs §24 assigns it.
 | Phase | Days | Theme | Written | IDs closed |
 | --- | --- | --- | --- | --- |
 | 0 | 0–0 | Foundry: the machine, the skeleton, the driver | ✅ 1/1 | 0/0 |
-| 1 | 1–8 | The ground: tensors, gradients, information | … 1/8 | 4/20 |
+| 1 | 1–8 | The ground: tensors, gradients, information | … 6/8 | 16/20 |
 | 2 | 9–17 | Text becomes numbers | — 0/9 | 0/20 |
 | 3 | 18–22 | Representation | — 0/5 | 0/10 |
 | 4 | 23–28 | Before attention: the sequence problem | — 0/6 | 0/9 |
@@ -43,7 +43,7 @@ Every written day claims exactly the IDs §24 assigns it.
 
 | Curriculum | Closed | Total |
 | --- | --- | --- |
-| `MATH` — Foundations | 0 | 16 |
+| `MATH` — Foundations | 12 | 16 |
 | `TOK` — Tokenization | 0 | 20 |
 | `EMB` — Representation | 0 | 10 |
 | `ARCH` — Architecture | 0 | 40 |

@@ -119,7 +119,27 @@ argument-hint: [day-number]
       **No duration field of any kind.**
     - **One-line answer** — the claim in one sentence, before anything else.
     - **The story** — a concrete scene first: a person, a machine, a failure, a decision. **No
-      jargon at all** in this section. This is the hook the definition hangs on.
+      jargon at all** in this section. This is the hook the definition hangs on. It must pass all
+      four story tests of plan §28.1 item 6, and a story that fails one is rewritten, not defended:
+      - **Everyday.** A kitchen, a shop, a bus, a phone, a form, a classroom, a bill, a locker, a
+        shared list on the fridge. **Never a trade the reader has not practised** — no compositors,
+        watchmakers, actuaries, hauliers, surveyors, telegraph clerks or ships' navigators. If the
+        metaphor has to be learned before it can teach, it is a second lesson, not a hook.
+      - **Plain.** No word a twelve-year-old would look up; no sentence they would read twice. Short
+        sentences, common words. Terminology waits for *The idea in plain language*.
+      - **Concrete.** Real objects and real numbers — *twenty-four lockers*, *₹33.33 each*, *thirty
+        chapatis*, *nineteen out of twenty* — never "some items" or "a quantity".
+      - **Honest.** A thing that genuinely happens, with the failure it genuinely causes. A scene
+        built backwards from the lesson reads as contrived and costs the reader's trust in the
+        section after it.
+
+      Write in the second person (*you*) or with a plain role noun (*a shopkeeper*, *the person at
+      the till*). **Never invent a name, and never guess a pronoun** — plan §28.1 item 5 bans names,
+      and they/them is the default for anyone whose pronouns are not stated.
+
+      **Check the whole day for callbacks after writing a story.** Later sections routinely reuse the
+      story's nouns ("the card taped to the trolley", "the librarian's shelf"). A rewritten story
+      with stale callbacks downstream is worse than the original.
     - **The idea in plain language** — the concept assuming zero prior knowledge; every term defined
       on first use, **including terms from earlier days**, with a link to the part that introduced
       them. No code.
@@ -218,6 +238,11 @@ argument-hint: [day-number]
 - The failures this format exists to prevent (§25.8): splitting without deepening · summary in place
   of explanation · **stopping at the toy example** · assuming the previous day · code without
   failure · **numbers without provenance** · **shapes left to the reader** · **trimming to fit** ·
+  **Grammar and punctuation are part of the contract** (plan §28.1 item 7). Full stops, commas,
+  apostrophes and hyphens, correct and consistent, in every section — prose, tables, code comments,
+  checklist boxes and commit messages alike. Em dash for an aside, comma for a pause, semicolon
+  rarely, exclamation mark never. Read each paragraph back once before moving on.
+
   solved reps. If a part has no story, no shapes, no failure text and no production section, it is
   not done.
 

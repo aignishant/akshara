@@ -1,6 +1,6 @@
 ---
 plan: akshara
-version: "v1.2.0"
+version: "v1.3.0"
 curricula: 17
 ids: 309
 days: 162
@@ -11,7 +11,7 @@ created: "2026-08-25"
 amended: "2026-08-26"
 ---
 
-# 🔤 MASTER PLAN v1.2.0 — Project **Akshara**
+# 🔤 MASTER PLAN v1.3.0 — Project **Akshara**
 ## Generative AI from the byte up — tokenizers · transformers · training · alignment · diffusion · serving
 
 > **Akshara** (Sanskrit अक्षर) means two things at once: *the syllable* — the smallest indivisible
@@ -1310,7 +1310,7 @@ Every file in `parts/` carries all eleven of these, **in this order**. Two of th
 | --- | --- | --- |
 | 1 | **frontmatter** | `day`, `part`, `title`, `ids`, `level`, `prerequisites`, `prev`, `next`. Machine-read. **No duration field of any kind** (Principle 17). |
 | 2 | **One-line answer** | The subtopic's claim in a single sentence, before anything else. A reader who reads only this line has learned something true. |
-| 3 | **The story** | A concrete scene before any abstraction: a person, a machine, a failure, a decision. It comes **first**, in plain words, with **no jargon at all**. It is the hook the definition hangs on, not decoration. |
+| 3 | **The story** | A concrete scene before any abstraction: a person, a machine, a failure, a decision. It comes **first**, in plain words, with **no jargon at all**. It is the hook the definition hangs on, not decoration. It must pass all four of §28.1's story tests — **everyday · plain · concrete · honest**. A story set in a trade the reader has never practised fails the first test and is rewritten. |
 | 4 | **The idea in plain language** | The concept itself, assuming the reader has never met it. Every term defined the first time it appears — **including terms from earlier days**, with a link to the part that introduced them. No code. |
 | 5 | **Why Akshara needs it** | The concrete later day that breaks without this. *"You meet this again on Day 88, where a chat template written the other way silently trains the model on its own prompt"* is the shape. Never "this is important". |
 | 6 | **The mechanism** | How it actually works: the runnable code, the derivation written out, or the diagram. Nothing skipped as "obvious". Mermaid whenever the concept is spatial, sequential, or a state machine. |
@@ -1555,6 +1555,25 @@ ADRs are `docs/adr/ADR-NNNN-*.md`.
    libraries** you actually use is required and unaffected (PyTorch, NumPy, `tokenizers`,
    `transformers`, llama.cpp…), as is **citing a paper by its arXiv id and title** — a citation is
    provenance (Principle 8), not a brand.
+6. **The story must be a scene the reader has actually lived.** Four tests, and a story that fails
+   any of them is rewritten, not defended:
+   - **Everyday.** A kitchen, a shop, a bus, a phone, a form, a classroom, a bill. *Not* a trade the
+     reader has never practised — no compositors, no watchmakers, no actuaries, no hauliers. A
+     metaphor the reader has to learn before it can teach is a second lesson, not a hook.
+   - **Plain.** No word a twelve-year-old would have to look up, and no sentence they would have to
+     read twice. Short sentences. Common words. The terminology belongs in section 4, not here.
+   - **Concrete.** Real objects and real numbers — *twenty-four lockers*, *₹33.33 each*, *thirty
+     chapatis* — never "some items" or "a quantity". A number the reader can picture is the whole
+     point of a scene.
+   - **Honest.** A thing that genuinely happens, with the failure it genuinely causes. A setup built
+     backwards from the lesson reads as contrived, and a reader who notices the contrivance stops
+     trusting the section that follows it.
+7. **Grammar and punctuation are part of the contract.** Full stops, commas, apostrophes and
+   hyphens, correct and consistent, in every section — prose, tables, code comments, checklist boxes
+   and commit messages alike. A sentence missing its comma makes the reader parse it twice, and a
+   document that costs the reader attention on its punctuation has spent attention it needed for the
+   idea. Use the em dash for an aside, the comma for a pause, the semicolon rarely and the
+   exclamation mark never.
 
 ### 28.2 The scene format
 

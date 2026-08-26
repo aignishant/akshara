@@ -5,7 +5,7 @@ curriculum** (Day 0 + Days 1–161) that builds a language model **from the byte
 transformer, pretraining, alignment, quantization, serving — plus diffusion, multimodal and
 retrieval.
 
-The single source of truth is `docs/00_MASTER_PLAN.md` ("the plan"), currently **v1.1.0**.
+The single source of truth is `docs/00_MASTER_PLAN.md` ("the plan"), currently **v1.3.0**.
 Progress is `docs/PROGRESS.md` (the last row is where we are) and `docs/TRACKER.md` (generated).
 Traceability is `docs/TRACEABILITY.md` (generated). Amendments are logged in
 `docs/CHANGELOG_PLAN.md`.
@@ -215,6 +215,17 @@ Rules that follow:
 
 - **Storytelling is the default register**: a scene before an abstraction, every time. The reader is
   learning this to work on production systems, so no idea stops at the toy example.
+- **Every story passes four tests** (plan §28.1 item 6). **Everyday** — a kitchen, a shop, a bus, a
+  phone, a form, a bill; never a trade the reader has not practised (no compositors, watchmakers,
+  actuaries, hauliers, ships' navigators). **Plain** — no word a twelve-year-old would look up.
+  **Concrete** — real objects and real numbers, never "some items". **Honest** — a thing that
+  genuinely happens, not a setup built backwards from the lesson. Second person or a role noun; no
+  invented names, no guessed pronouns. After rewriting a story, **grep the day for callbacks to the
+  old one** — stale callbacks are worse than the original story.
+- **Grammar and punctuation are part of the contract** (plan §28.1 item 7). Full stops, commas,
+  apostrophes and hyphens, correct and consistent, in prose, tables, code comments, checklist boxes
+  and commit messages. Em dash for an aside, comma for a pause, semicolon rarely, exclamation mark
+  never.
 - **Simple language first.** Plain words → concrete example → *only then* the terminology. If a
   twelve-year-old could not follow the first sentence, rewrite the first sentence.
 - **Define every term on first use, including terms from earlier days**, with a link back to the

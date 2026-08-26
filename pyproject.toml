@@ -24,6 +24,14 @@ dev = [
 [tool.uv]
 package = true
 
+# Without this, setuptools' flat-layout auto-discovery sees `akshara`, `days`, `configs` and
+# `notebooks` side by side at the repo root, refuses to guess which is the package, and every
+# `uv run` — so `./m depth`, `./m trace` and `./m check` — dies before it starts. The package is
+# `akshara/` and only `akshara/`; the other three are teaching material, run configs and
+# notebooks, none of which ship.
+[tool.setuptools.packages.find]
+include = ["akshara*"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py312"

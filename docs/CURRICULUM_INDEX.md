@@ -11,18 +11,18 @@ remember. Every ID appears exactly once; a duplicate or a missing ID is a plan b
 
 | ID | Day | Day title |
 | --- | --- | --- |
-| `MATH-01` | 2 | Tensors — shape, dtype, stride, device, broadcasting; the matmul that is 90% of everythi… |
-| `MATH-02` | 2 | Tensors — shape, dtype, stride, device, broadcasting; the matmul that is 90% of everythi… |
-| `MATH-03` | 2 | Tensors — shape, dtype, stride, device, broadcasting; the matmul that is 90% of everythi… |
-| `MATH-04` | 3 | Derivatives by hand — the chain rule as a graph, and a scalar autograd engine you write |
-| `MATH-05` | 3 | Derivatives by hand — the chain rule as a graph, and a scalar autograd engine you write |
-| `MATH-06` | 4 | Backprop through a layer — the transpose everyone gets wrong, proved by finite differences |
-| `MATH-07` | 4 | Backprop through a layer — the transpose everyone gets wrong, proved by finite differences |
-| `MATH-08` | 5 | Probability over a vocabulary — logits, softmax, and sampling from a categorical |
-| `MATH-09` | 5 | Probability over a vocabulary — logits, softmax, and sampling from a categorical |
-| `MATH-10` | 6 | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
-| `MATH-11` | 6 | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
-| `MATH-12` | 6 | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
+| `MATH-01` | [2](../days/day-002-tensors-shape-stride/LESSON.md) | Tensors — shape, dtype, stride, device, broadcasting; the matmul that is 90% of everythi… |
+| `MATH-02` | [2](../days/day-002-tensors-shape-stride/LESSON.md) | Tensors — shape, dtype, stride, device, broadcasting; the matmul that is 90% of everythi… |
+| `MATH-03` | [2](../days/day-002-tensors-shape-stride/LESSON.md) | Tensors — shape, dtype, stride, device, broadcasting; the matmul that is 90% of everythi… |
+| `MATH-04` | [3](../days/day-003-derivatives-and-autograd/LESSON.md) | Derivatives by hand — the chain rule as a graph, and a scalar autograd engine you write |
+| `MATH-05` | [3](../days/day-003-derivatives-and-autograd/LESSON.md) | Derivatives by hand — the chain rule as a graph, and a scalar autograd engine you write |
+| `MATH-06` | [4](../days/day-004-backprop-and-gradcheck/LESSON.md) | Backprop through a layer — the transpose everyone gets wrong, proved by finite differences |
+| `MATH-07` | [4](../days/day-004-backprop-and-gradcheck/LESSON.md) | Backprop through a layer — the transpose everyone gets wrong, proved by finite differences |
+| `MATH-08` | [5](../days/day-005-logits-softmax-sampling/LESSON.md) | Probability over a vocabulary — logits, softmax, and sampling from a categorical |
+| `MATH-09` | [5](../days/day-005-logits-softmax-sampling/LESSON.md) | Probability over a vocabulary — logits, softmax, and sampling from a categorical |
+| `MATH-10` | [6](../days/day-006-entropy-cross-entropy-perplexity/LESSON.md) | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
+| `MATH-11` | [6](../days/day-006-entropy-cross-entropy-perplexity/LESSON.md) | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
+| `MATH-12` | [6](../days/day-006-entropy-cross-entropy-perplexity/LESSON.md) | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
 | `MATH-13` | 7 | 💥 Numerical reality — fp32/fp16/bf16, the softmax that returns NaN, and log-sum-exp |
 | `MATH-14` | 7 | 💥 Numerical reality — fp32/fp16/bf16, the softmax that returns NaN, and log-sum-exp |
 | `MATH-15` | 8 | Optimization — gradient descent, momentum, Adam/AdamW, and the learning rate |
