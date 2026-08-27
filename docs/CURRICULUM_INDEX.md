@@ -1,6 +1,6 @@
 # 📇 Curriculum index — Project Akshara
 
-_Generated 2026-08-26 by `scripts/trace.py` from the master plan's §24._
+_Generated 2026-08-27 by `scripts/trace.py` from the master plan's §24._
 **Do not edit by hand.**
 
 §24 answers *what does day 88 teach?* This file answers the reverse — *where do I learn
@@ -23,26 +23,26 @@ remember. Every ID appears exactly once; a duplicate or a missing ID is a plan b
 | `MATH-10` | [6](../days/day-006-entropy-cross-entropy-perplexity/LESSON.md) | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
 | `MATH-11` | [6](../days/day-006-entropy-cross-entropy-perplexity/LESSON.md) | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
 | `MATH-12` | [6](../days/day-006-entropy-cross-entropy-perplexity/LESSON.md) | Information — entropy, cross-entropy, KL, perplexity; **why the loss is the loss** |
-| `MATH-13` | 7 | 💥 Numerical reality — fp32/fp16/bf16, the softmax that returns NaN, and log-sum-exp |
-| `MATH-14` | 7 | 💥 Numerical reality — fp32/fp16/bf16, the softmax that returns NaN, and log-sum-exp |
-| `MATH-15` | 8 | Optimization — gradient descent, momentum, Adam/AdamW, and the learning rate |
-| `MATH-16` | 8 | Optimization — gradient descent, momentum, Adam/AdamW, and the learning rate |
+| `MATH-13` | [7](../days/day-007-floating-point-and-logsumexp/LESSON.md) | 💥 Numerical reality — fp32/fp16/bf16, the softmax that returns NaN, and log-sum-exp |
+| `MATH-14` | [7](../days/day-007-floating-point-and-logsumexp/LESSON.md) | 💥 Numerical reality — fp32/fp16/bf16, the softmax that returns NaN, and log-sum-exp |
+| `MATH-15` | [8](../days/day-008-gradient-descent-and-adam/LESSON.md) | Optimization — gradient descent, momentum, Adam/AdamW, and the learning rate |
+| `MATH-16` | [8](../days/day-008-gradient-descent-and-adam/LESSON.md) | Optimization — gradient descent, momentum, Adam/AdamW, and the learning rate |
 
 ## `TOK` — Tokenization (20 IDs)
 
 | ID | Day | Day title |
 | --- | --- | --- |
-| `TOK-01` | 9 | The vocabulary problem — why not words, why not letters, and what a tokenizer is for |
-| `TOK-02` | 9 | The vocabulary problem — why not words, why not letters, and what a tokenizer is for |
-| `TOK-03` | 10 | Unicode, code points and bytes — the layer under every tokenizer, and the emoji that is … |
-| `TOK-04` | 10 | Unicode, code points and bytes — the layer under every tokenizer, and the emoji that is … |
-| `TOK-05` | 11 | Character-level and word-level tokenizers, built — and where each one dies |
-| `TOK-06` | 11 | Character-level and word-level tokenizers, built — and where each one dies |
-| `TOK-07` | 12 | BPE from scratch I — the merge loop, run by hand on a toy corpus, then trained |
-| `TOK-08` | 12 | BPE from scratch I — the merge loop, run by hand on a toy corpus, then trained |
-| `TOK-09` | 13 | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
-| `TOK-10` | 13 | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
-| `TOK-11` | 13 | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
+| `TOK-01` | [9](../days/day-009-the-vocabulary-problem/LESSON.md) | The vocabulary problem — why not words, why not letters, and what a tokenizer is for |
+| `TOK-02` | [9](../days/day-009-the-vocabulary-problem/LESSON.md) | The vocabulary problem — why not words, why not letters, and what a tokenizer is for |
+| `TOK-03` | [10](../days/day-010-unicode-code-points-bytes/LESSON.md) | Unicode, code points and bytes — the layer under every tokenizer, and the emoji that is … |
+| `TOK-04` | [10](../days/day-010-unicode-code-points-bytes/LESSON.md) | Unicode, code points and bytes — the layer under every tokenizer, and the emoji that is … |
+| `TOK-05` | [11](../days/day-011-character-and-word-tokenizers/LESSON.md) | Character-level and word-level tokenizers, built — and where each one dies |
+| `TOK-06` | [11](../days/day-011-character-and-word-tokenizers/LESSON.md) | Character-level and word-level tokenizers, built — and where each one dies |
+| `TOK-07` | [12](../days/day-012-bpe-the-merge-loop/LESSON.md) | BPE from scratch I — the merge loop, run by hand on a toy corpus, then trained |
+| `TOK-08` | [12](../days/day-012-bpe-the-merge-loop/LESSON.md) | BPE from scratch I — the merge loop, run by hand on a toy corpus, then trained |
+| `TOK-09` | [13](../days/day-013-bpe-encode-decode-bytes/LESSON.md) | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
+| `TOK-10` | [13](../days/day-013-bpe-encode-decode-bytes/LESSON.md) | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
+| `TOK-11` | [13](../days/day-013-bpe-encode-decode-bytes/LESSON.md) | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
 | `TOK-12` | 14 | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a production tokenizer do… |
 | `TOK-13` | 14 | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a production tokenizer do… |
 | `TOK-14` | 15 | The other families — WordPiece, Unigram and SentencePiece; a *probabilistic* vocabulary |

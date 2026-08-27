@@ -1,8 +1,8 @@
 # 📊 Tracker — Project Akshara
 
-_Generated 2026-08-26 by `scripts/tracker.py`._ **Do not edit by hand.**
+_Generated 2026-08-27 by `scripts/tracker.py`._ **Do not edit by hand.**
 
-**0 / 162 days complete** · 2 written on disk · 27 part documents in total.
+**0 / 162 days complete** · 14 written on disk · 166 part documents in total.
 
 `complete` means a row in `docs/PROGRESS.md` (plan §27). `written` means the folder exists
 with a `parts/` directory. A day with no `parts/` is not written, whatever the folder looks
@@ -22,23 +22,23 @@ visible from this table without opening the day.
 | Day | Title | IDs | Parts | Sections | Status |
 | --- | --- | --- | --- | --- | --- |
 | [1](../days/day-001-bootstrap-and-map/LESSON.md) | Bootstrap & the map — the repo as Akshara's memory, `.env` + the Hug… | 4 | 14 | 4 | 🚧 written |
-| 2 | Tensors — shape, dtype, stride, device, broadcasting; the matmul tha… | 3 | — | — | ⬜ pending |
-| 3 | Derivatives by hand — the chain rule as a graph, and a scalar autogr… | 2 | — | — | ⬜ pending |
-| 4 | Backprop through a layer — the transpose everyone gets wrong, proved… | 2 | — | — | ⬜ pending |
-| 5 | Probability over a vocabulary — logits, softmax, and sampling from a… | 2 | — | — | ⬜ pending |
-| 6 | Information — entropy, cross-entropy, KL, perplexity; **why the loss… | 3 | — | — | ⬜ pending |
-| 7 | 💥 Numerical reality — fp32/fp16/bf16, the softmax that returns NaN, … | 2 | — | — | ⬜ pending |
-| 8 | Optimization — gradient descent, momentum, Adam/AdamW, and the learn… | 2 | — | — | ⬜ pending |
+| [2](../days/day-002-tensors-shape-stride/LESSON.md) | Tensors — shape, dtype, stride, device, broadcasting; the matmul tha… | 3 | 13 | 4 | 🚧 written |
+| [3](../days/day-003-derivatives-and-autograd/LESSON.md) | Derivatives by hand — the chain rule as a graph, and a scalar autogr… | 2 | 12 | 3 | 🚧 written |
+| [4](../days/day-004-backprop-and-gradcheck/LESSON.md) | Backprop through a layer — the transpose everyone gets wrong, proved… | 2 | 11 | 3 | 🚧 written |
+| [5](../days/day-005-logits-softmax-sampling/LESSON.md) | Probability over a vocabulary — logits, softmax, and sampling from a… | 2 | 11 | 3 | 🚧 written |
+| [6](../days/day-006-entropy-cross-entropy-perplexity/LESSON.md) | Information — entropy, cross-entropy, KL, perplexity; **why the loss… | 3 | 12 | 3 | 🚧 written |
+| [7](../days/day-007-floating-point-and-logsumexp/LESSON.md) | 💥 Numerical reality — fp32/fp16/bf16, the softmax that returns NaN, … | 2 | 11 | 3 | 🚧 written |
+| [8](../days/day-008-gradient-descent-and-adam/LESSON.md) | Optimization — gradient descent, momentum, Adam/AdamW, and the learn… | 2 | 12 | 3 | 🚧 written |
 
-## ⬜ Phase 2 — Text becomes numbers  (0/9 complete)
+## 🚧 Phase 2 — Text becomes numbers  (0/9 complete)
 
 | Day | Title | IDs | Parts | Sections | Status |
 | --- | --- | --- | --- | --- | --- |
-| 9 | The vocabulary problem — why not words, why not letters, and what a … | 2 | — | — | ⬜ pending |
-| 10 | Unicode, code points and bytes — the layer under every tokenizer, an… | 2 | — | — | ⬜ pending |
-| 11 | Character-level and word-level tokenizers, built — and where each on… | 2 | — | — | ⬜ pending |
-| 12 | BPE from scratch I — the merge loop, run by hand on a toy corpus, th… | 2 | — | — | ⬜ pending |
-| 13 | BPE from scratch II — encode, decode, the regex pre-tokenizer, and b… | 3 | — | — | ⬜ pending |
+| [9](../days/day-009-the-vocabulary-problem/LESSON.md) | The vocabulary problem — why not words, why not letters, and what a … | 2 | 11 | 3 | 🚧 written |
+| [10](../days/day-010-unicode-code-points-bytes/LESSON.md) | Unicode, code points and bytes — the layer under every tokenizer, an… | 2 | 11 | 3 | 🚧 written |
+| [11](../days/day-011-character-and-word-tokenizers/LESSON.md) | Character-level and word-level tokenizers, built — and where each on… | 2 | 11 | 3 | 🚧 written |
+| [12](../days/day-012-bpe-the-merge-loop/LESSON.md) | BPE from scratch I — the merge loop, run by hand on a toy corpus, th… | 2 | 11 | 3 | 🚧 written |
+| [13](../days/day-013-bpe-encode-decode-bytes/LESSON.md) | BPE from scratch II — encode, decode, the regex pre-tokenizer, and b… | 3 | 13 | 4 | 🚧 written |
 | 14 | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a pro… | 2 | — | — | ⬜ pending |
 | 15 | The other families — WordPiece, Unigram and SentencePiece; a *probab… | 2 | — | — | ⬜ pending |
 | 16 | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embed… | 2 | — | — | ⬜ pending |
