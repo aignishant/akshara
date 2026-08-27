@@ -43,10 +43,10 @@ remember. Every ID appears exactly once; a duplicate or a missing ID is a plan b
 | `TOK-09` | [13](../days/day-013-bpe-encode-decode-bytes/LESSON.md) | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
 | `TOK-10` | [13](../days/day-013-bpe-encode-decode-bytes/LESSON.md) | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
 | `TOK-11` | [13](../days/day-013-bpe-encode-decode-bytes/LESSON.md) | BPE from scratch II — encode, decode, the regex pre-tokenizer, and byte-level BPE |
-| `TOK-12` | 14 | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a production tokenizer do… |
-| `TOK-13` | 14 | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a production tokenizer do… |
-| `TOK-14` | 15 | The other families — WordPiece, Unigram and SentencePiece; a *probabilistic* vocabulary |
-| `TOK-15` | 15 | The other families — WordPiece, Unigram and SentencePiece; a *probabilistic* vocabulary |
+| `TOK-12` | [14](../days/day-014-tiktoken-and-the-pipeline/LESSON.md) | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a production tokenizer do… |
+| `TOK-13` | [14](../days/day-014-tiktoken-and-the-pipeline/LESSON.md) | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a production tokenizer do… |
+| `TOK-14` | [15](../days/day-015-wordpiece-unigram-sentencepiece/LESSON.md) | The other families — WordPiece, Unigram and SentencePiece; a *probabilistic* vocabulary |
+| `TOK-15` | [15](../days/day-015-wordpiece-unigram-sentencepiece/LESSON.md) | The other families — WordPiece, Unigram and SentencePiece; a *probabilistic* vocabulary |
 | `TOK-16` | 16 | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embedding, and **Silent F… |
 | `TOK-17` | 16 | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embedding, and **Silent F… |
 | `TOK-18` | 17 | 💥 The tokenizer failure lab — numbers, whitespace, code, multilingual inflation, token h… |
