@@ -12,12 +12,19 @@ Traceability is `docs/TRACEABILITY.md` (generated). Amendments are logged in
 
 **Read in this order before doing anything:**
 
-1. `docs/00_MASTER_PLAN.md` — the contract. Never contradict it. **§25 is the depth contract; read
-   it before writing a single line of any day. §6 is the five silent failures; read it before
-   writing a single line of any code.**
-2. `docs/PROGRESS.md` — the last row is where we actually are.
-3. `docs/TRACEABILITY.md` — any open ID from a completed phase is a bug.
-4. `days/day-<last>-<slug>/LESSON.md` and its `CHECKLIST.md` — how the previous day ended.
+1. `./m brief N` — day N's facts, projected **verbatim** from the plan: the §24.2 row that defines
+   the day, the §7–§23 definition of every ID it closes, its phase and gate, the days either side,
+   and the last ledger row. This replaces reading the whole plan; nothing else does. Never cite the
+   brief — it names its own sources, and those are what you cite (ADR-0007).
+2. `docs/00_MASTER_PLAN.md`, **by section — the contract. Never contradict it. §25 is the depth
+   contract; read it before writing a single line of any day. §6 is the five silent failures; read
+   it before writing a single line of any code.** §2 is the principles and §28 the style guide.
+   These four are judgement, so they are read **in full or not at all** — never summarised, never
+   projected, never trimmed to fit. `./m brief` prints the command that fetches each. Read the
+   plan end to end when the plan itself is the task.
+3. `docs/PROGRESS.md` — the last row is where we actually are.
+4. `docs/TRACEABILITY.md` — any open ID from a completed phase is a bug.
+5. `days/day-<last>-<slug>/LESSON.md` and its `CHECKLIST.md` — how the previous day ended.
 
 ---
 
@@ -168,6 +175,7 @@ requires a GPU · invent a version, an API, or a number.
 # run a single test        → uv run python -m pytest tests/test_x.py::test_y -q
 # lint                     → uv run ruff check .
 # format                   → uv run ruff format .
+# day N's plan facts       → ./m brief N
 # depth contract           → ./m depth [N]
 # traceability             → ./m trace
 # whole-project gate       → ./m check      (ruff + format + pytest + depth + trace)

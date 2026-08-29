@@ -281,7 +281,7 @@ comparing ids must state that it assumes it.
 **`docs/PROGRESS.md`** — append verbatim, with your real commit sha:
 
 ```text
-| 15 | 2026-08-27 | TOK-14, TOK-15 | 13 | T0 | <sha> | yes |
+| 15 | 2026-08-27 | TOK-14, TOK-15 | 13 | T0 | <commit sha> | ✅ |
 ```
 
 **`docs/PACKAGES.md`** — one row:

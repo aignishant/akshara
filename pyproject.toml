@@ -71,6 +71,11 @@ ignore = [
 # the very characters the parser has to match — and a heuristic that treated en-dashes as
 # suspicious is exactly the bug that silently dropped three days from the day map once already.
 "scripts/trace.py" = ["RUF001", "RUF003"]
+# brief.py and its test name the plan's sections the way the plan names them - "§7–§23", "Days 9–17"
+# - and assert against those exact strings. The en-dash is the source's punctuation being quoted, so
+# "correcting" it to a hyphen would make the projection stop matching what it projects.
+"scripts/brief.py" = ["RUF001", "RUF002", "RUF003"]
+"tests/test_brief.py" = ["RUF001", "RUF002"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

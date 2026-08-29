@@ -39,6 +39,11 @@ case "${1:-help}" in
     find "$D/parts" -name '*.md' | sort | sed "s|^$D/parts/||"
     ;;
 
+  brief)
+    [ -z "$DAY" ] && { echo "usage: ./m brief <day>"; exit 1; }
+    uv run python scripts/brief.py "$DAY"
+    ;;
+
   depth)
     if [ -n "$DAY" ]; then uv run python scripts/depth_check.py "$DAY"
     else uv run python scripts/depth_check.py; fi
@@ -174,6 +179,7 @@ usage: ./m <command> [day]
   trace          regenerate docs/TRACEABILITY.md + CURRICULUM_INDEX.md from the hubs vs plan §24
   start N        point at day N's hub and list its parts/
   parts N        list day N's sub-topic documents
+  brief N        project day N's plan facts - its §24 row, its IDs, its phase gate - verbatim
   depth [N]      check day N (or every written day) against plan §25, the depth contract
   scaffold N     create days/day-NNN-<slug>/lab/
   check          ruff + ruff format + CPU-only pytest + depth contract + traceability

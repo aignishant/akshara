@@ -1,6 +1,6 @@
 # 📇 Curriculum index — Project Akshara
 
-_Generated 2026-08-27 by `scripts/trace.py` from the master plan's §24._
+_Generated 2026-08-29 by `scripts/trace.py` from the master plan's §24._
 **Do not edit by hand.**
 
 §24 answers *what does day 88 teach?* This file answers the reverse — *where do I learn

@@ -291,7 +291,7 @@ CI.
 **`docs/PROGRESS.md`** — append verbatim, with your real commit sha:
 
 ```text
-| 14 | 2026-08-27 | TOK-12, TOK-13 | 14 | T0 | <sha> | yes |
+| 14 | 2026-08-27 | TOK-12, TOK-13 | 14 | T0 | <commit sha> | ✅ |
 ```
 
 **`docs/PACKAGES.md`** — three rows, versions looked up live on PyPI on 2026-08-27:

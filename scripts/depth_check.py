@@ -14,6 +14,12 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
+# A Windows console defaults to cp1252, and neither the ledger's vocabulary nor the plan's
+# day titles fit in it. The shell every day document is written for is Git Bash (CLAUDE.md),
+# so decode failures must never be what a learner sees instead of a check result.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 ROOT = Path(__file__).resolve().parent.parent
 DAYS = ROOT / "days"
 
@@ -39,6 +45,18 @@ SHAPES_AFTER = "The mechanism"
 SHAPES_BEFORE = "When it breaks"
 
 LEVELS = frozenset({"foundation", "working", "production"})
+
+#: A link from one curriculum document to another. External links and bare anchors are not
+#: this checker's business; a relative path to a `.md` file is.
+MD_LINK = re.compile(r"\[[^\]]*\]\((?!https?:|mailto:|#)([^)\s]+\.md)(?:#[^)\s]*)?\)")
+
+#: A quoted `.md` path inside a part's `prerequisites:` frontmatter list.
+PREREQ_PATH = re.compile(r'"([^"]+\.md)"')
+
+#: The `docs/PROGRESS.md` row a hub's §11 tells the learner to paste (plan §27):
+#: day | date | IDs closed | parts | tier | commit | gates green.
+LEDGER_COLUMNS = 7
+
 
 #: Reader-directed pace and duration phrasing (§25.9, Principle 17).
 #:
@@ -190,6 +208,30 @@ def check_clocks(path: Path, text: str, rep: Report) -> None:
             rep.fail(path, f"line {line}: {description} — {m.group(0)!r} (Principle 17)")
 
 
+def check_links(path: Path, text: str, rep: Report) -> None:
+    """Every relative link to another curriculum document must resolve (§25.2).
+
+    Folder slugs are renamed freely — the number is the identity and the slug is a label on it —
+    so a link written against yesterday's slug is the predictable breakage, and it is a *silent*
+    one: the prose still reads correctly and only a reader who clicks ever finds out.
+    """
+    for m in MD_LINK.finditer(text):
+        target = m.group(1)
+        if not (path.parent / target).exists():
+            line = text[: m.start()].count("\n") + 1
+            rep.fail(path, f"line {line}: link target does not exist — `{target}` (§25.2)")
+
+
+def check_prerequisite_paths(path: Path, fm: str, rep: Report) -> None:
+    """A part names and links its prerequisite (§25.4); a path that does not resolve names nothing."""
+    m = re.search(r"^prerequisites:\s*(.+)$", fm, re.MULTILINE)
+    if not m:
+        return
+    for target in PREREQ_PATH.findall(m.group(1)):
+        if not (path.parent / target).exists():
+            rep.fail(path, f"`prerequisites` names a file that does not exist — `{target}` (§25.4)")
+
+
 # --- part checks ---------------------------------------------------------------------------
 
 
@@ -198,6 +240,9 @@ def check_part(path: Path, section_no: int, rep: Report) -> None:
     text = path.read_text(encoding="utf-8")
     fm, body = split_frontmatter(text)
     rep.parts_checked += 1
+
+    check_links(path, text, rep)
+    check_prerequisite_paths(path, fm, rep)
 
     check_clocks(path, text, rep)
 
@@ -265,11 +310,50 @@ def check_part(path: Path, section_no: int, rep: Report) -> None:
 # --- hub checks ----------------------------------------------------------------------------
 
 
+def check_ledger_row(hub: Path, body: str, day_no: str | None, rep: Report) -> None:
+    """§11 carries the exact `docs/PROGRESS.md` row to paste (§25.5, plan §27).
+
+    Ritual is the point: the repo is the memory. A row that arrives in a different shape from
+    the one before it is a row nobody can diff, sort or count.
+    """
+    section = body.split("## §11", 1)[-1]
+    rows = [ln for ln in section.split("\n") if re.match(r"^\|\s*\d+\s*\|", ln)]
+    if not rows:
+        rep.fail(hub, "§11 carries no `docs/PROGRESS.md` row to paste (§25.5)")
+        return
+    for row in rows:
+        c = [x.strip() for x in row.strip().strip("|").split("|")]
+        if len(c) != LEDGER_COLUMNS:
+            rep.fail(
+                hub,
+                f"§11's ledger row has {len(c)} columns; `docs/PROGRESS.md` has "
+                f"{LEDGER_COLUMNS} (plan §27): {row.strip()}",
+            )
+            continue
+        if day_no is not None and c[0] != day_no:
+            rep.fail(
+                hub, f"§11's ledger row says day {c[0]} but the hub is day {day_no} (plan §27)"
+            )
+        if c[5] != "<commit sha>" and not re.fullmatch(r"[0-9a-f]{7,40}", c[5]):
+            rep.fail(
+                hub,
+                f"§11's ledger row commit column is `{c[5]}`; it is `<commit sha>` until the "
+                "commit exists, then the sha (plan §27)",
+            )
+        if c[6] != "✅":
+            rep.fail(
+                hub,
+                f"§11's ledger row `Gates green?` column is `{c[6]}`; the ledger's vocabulary "
+                "is ✅ (plan §27)",
+            )
+
+
 def check_hub(hub: Path, part_paths: list[str], rep: Report) -> None:
     text = hub.read_text(encoding="utf-8")
     fm, body = split_frontmatter(text)
 
     check_clocks(hub, text, rep)
+    check_links(hub, text, rep)
 
     if not fm:
         rep.fail(hub, "no YAML frontmatter (§25.5)")
@@ -291,6 +375,8 @@ def check_hub(hub: Path, part_paths: list[str], rep: Report) -> None:
     ):
         if frontmatter_value(fm, key) is None:
             rep.fail(hub, f"frontmatter is missing `{key}` (§25.5)")
+
+    check_ledger_row(hub, body, frontmatter_value(fm, "day"), rep)
 
     declared = frontmatter_value(fm, "parts")
     if declared is not None and declared.isdigit() and int(declared) != len(part_paths):
@@ -452,9 +538,7 @@ def main(argv: list[str]) -> int:
         print("\nPlan §25 is the contract. Never hand-wave past a depth failure.")
         return 1
 
-    print(
-        f"depth: OK — {rep.days_checked} day(s), {rep.parts_checked} part(s), contract green"
-    )
+    print(f"depth: OK — {rep.days_checked} day(s), {rep.parts_checked} part(s), contract green")
     return 0
 
 
