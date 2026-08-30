@@ -2,7 +2,7 @@
 
 _Generated 2026-08-29 by `scripts/tracker.py`._ **Do not edit by hand.**
 
-**0 / 162 days complete** · 16 written on disk · 193 part documents in total.
+**0 / 162 days complete** · 17 written on disk · 212 part documents in total.
 
 `complete` means a row in `docs/PROGRESS.md` (plan §27). `written` means the folder exists
 with a `parts/` directory. A day with no `parts/` is not written, whatever the folder looks
@@ -41,7 +41,7 @@ visible from this table without opening the day.
 | [13](../days/day-013-bpe-encode-decode-bytes/LESSON.md) | BPE from scratch II — encode, decode, the regex pre-tokenizer, and b… | 3 | 13 | 4 | 🚧 written |
 | [14](../days/day-014-tiktoken-and-the-pipeline/LESSON.md) | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a pro… | 2 | 14 | 4 | 🚧 written |
 | [15](../days/day-015-wordpiece-unigram-sentencepiece/LESSON.md) | The other families — WordPiece, Unigram and SentencePiece; a *probab… | 2 | 13 | 4 | 🚧 written |
-| 16 | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embed… | 2 | — | — | ⬜ pending |
+| [16](../days/day-016-special-tokens-chat-templates/LESSON.md) | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embed… | 2 | 19 | 5 | 🚧 written |
 | 17 | 💥 The tokenizer failure lab — numbers, whitespace, code, multilingua… | 3 | — | — | ⬜ pending |
 
 ## ⬜ Phase 3 — Representation  (0/5 complete)

@@ -47,8 +47,8 @@ remember. Every ID appears exactly once; a duplicate or a missing ID is a plan b
 | `TOK-13` | [14](../days/day-014-tiktoken-and-the-pipeline/LESSON.md) | 🔍 Now compare — `tiktoken` and the `tokenizers` pipeline; what a production tokenizer do… |
 | `TOK-14` | [15](../days/day-015-wordpiece-unigram-sentencepiece/LESSON.md) | The other families — WordPiece, Unigram and SentencePiece; a *probabilistic* vocabulary |
 | `TOK-15` | [15](../days/day-015-wordpiece-unigram-sentencepiece/LESSON.md) | The other families — WordPiece, Unigram and SentencePiece; a *probabilistic* vocabulary |
-| `TOK-16` | 16 | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embedding, and **Silent F… |
-| `TOK-17` | 16 | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embedding, and **Silent F… |
+| `TOK-16` | [16](../days/day-016-special-tokens-chat-templates/LESSON.md) | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embedding, and **Silent F… |
+| `TOK-17` | [16](../days/day-016-special-tokens-chat-templates/LESSON.md) | Special tokens & chat templates — BOS/EOS/PAD/UNK, resizing an embedding, and **Silent F… |
 | `TOK-18` | 17 | 💥 The tokenizer failure lab — numbers, whitespace, code, multilingual inflation, token h… |
 | `TOK-19` | 17 | 💥 The tokenizer failure lab — numbers, whitespace, code, multilingual inflation, token h… |
 | `TOK-20` | 17 | 💥 The tokenizer failure lab — numbers, whitespace, code, multilingual inflation, token h… |

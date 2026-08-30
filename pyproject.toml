@@ -12,6 +12,7 @@ requires-python = "==3.12.*"
 # This list starts empty on purpose. Day 2 adds numpy. Torch arrives when the point becomes
 # scale, not before.
 dependencies = [
+    "jinja2==3.1.6",
     "sentencepiece==0.2.2",
     "tiktoken==0.14.0",
     "tokenizers==0.23.1",
