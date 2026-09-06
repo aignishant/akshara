@@ -1,6 +1,6 @@
 # 🧵 Traceability — Project Akshara
 
-_Generated 2026-08-29 by `scripts/trace.py` from the master plan's §24 and the day hubs._
+_Generated 2026-09-07 by `scripts/trace.py` from the master plan's §24 and the day hubs._
 **Do not edit by hand** — the next `./m check` overwrites it.
 
 **37 / 309 IDs closed** across 17 written day(s) of 162 planned.

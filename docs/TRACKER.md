@@ -1,6 +1,6 @@
 # 📊 Tracker — Project Akshara
 
-_Generated 2026-08-29 by `scripts/tracker.py`._ **Do not edit by hand.**
+_Generated 2026-09-07 by `scripts/tracker.py`._ **Do not edit by hand.**
 
 **0 / 162 days complete** · 17 written on disk · 212 part documents in total.
 
